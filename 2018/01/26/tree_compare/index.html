@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="树的比较">
+
+
+
+
+  <meta name="keywords" content="数据结构, 树, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/01/26/tree_compare/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 树的比较 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          树的比较
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-26
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/01/26/tree_compare/" data-title="树的比较">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一般的二叉搜索树"><span class="toc-text">一般的二叉搜索树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AVL树"><span class="toc-text">AVL树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树"><span class="toc-text">红黑树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用-1"><span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B树"><span class="toc-text">B树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用-2"><span class="toc-text">应用</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h1 id="一般的二叉搜索树"><a href="#一般的二叉搜索树" class="headerlink" title="一般的二叉搜索树"></a>一般的二叉搜索树</h1><p>遍历整棵树时间   O(log(n)) ，n为结点的个数</p>
+<p>查询，插入，删除的时间是O(log(h)), h为树深</p>
+<p>随机构建一个二叉树时间 O(log(n))，n为结点的个数</p>
+<hr>
+<a id="more"></a>
+<h1 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h1><p>AVL树又称为高度平衡的二叉搜索树。它能保持二叉树的高度平衡，尽量降低二叉树的高度，减少树的平均搜索长度</p>
+<p>性质：</p>
+<p>1.左子树和右子树的高度之差的绝对值不超过1</p>
+<p>2.树中的每个左子树和右子树都是AVL树</p>
+<p>3.每个节点都有一个平衡因子(balance factor–bf),任一节点的平衡因子是-1,0,1。(每个节点的平衡因子等于右子树的高度减去左子树的高度 )   </p>
+<p>一棵AVL树有n个节点，其高度可以保持在logn，插入/删除/查找的时间复杂度也是O(log n)</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>最早的平衡二叉树之一，windows对进程地址空间的管理用到了AVL树</p>
+<hr>
+<h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>是平衡搜索树的一种，最坏情况下基本动态集合操作时间为O(log(n))</p>
+<p>5个性质：</p>
+<p>1.每个结点不是黑色就是红色</p>
+<p>2.根结点肯定是黑色</p>
+<p>3.每个叶结点(NIL)是黑色的</p>
+<p>4.如果一个结点是红色，那么该结点的两个子结点都是黑色的</p>
+<p>5.每个结点，到后代叶结点的黑色结点数量是相等的</p>
+<p>插入,删除的时间复杂度是O(log(n))</p>
+<h2 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h2><p>广泛用在C++的STL中。如map和set都是用红黑树实现的。</p>
+<p>管理进程控制块</p>
+<p>nginx中，用红黑树管理timer</p>
+<p>epoll在内核中的实现，用红黑树管理事件块</p>
+<hr>
+<h1 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h1><p>一棵m阶B树(balanced tree of order m)是一棵平衡的m路搜索树</p>
+<p>性质：</p>
+<p>1.每个结点储存关键字和关键字的个数，并且该些关键字已非降序存放</p>
+<p>2.结点里还存放指向其孩子结点的指针，并且存放bool值的leaf，表明是否是叶子结点</p>
+<p>3.每个叶子结点有相同的深度，即树高h</p>
+<p>4.假若B树的最小度数为t，除根节点以外的任何结点都必须至少有t-1个关键字，只有t个孩子。每个结点孩子至多是2<em>t-1关键字，和2</em>t个孩子，该结点是满的</p>
+<p>5.t越大，树高越小</p>
+<p>查找,插入的时间复杂度O(tlog(t)(n)),t为底数</p>
+<p>创建时间复杂度O(1)</p>
+<p>分裂时间复杂度为O(t)</p>
+<h2 id="应用-2"><a href="#应用-2" class="headerlink" title="应用"></a>应用</h2><p>用在磁盘文件组织，数据索引和数据库索引</p>
+<p>B树是为磁盘或其他直接存取的辅助存储设备而设计的一种平衡搜索树</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/01/26/tree_compare/">https://kiudou.github.io/2018/01/26/tree_compare/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/数据结构/">数据结构</a>
+            
+              <a href="/tags/树/">树</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/27/hash_table/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">哈希表</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/25/B_tree/">
+        <span class="next-text nav-default">B树</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

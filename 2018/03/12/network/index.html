@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="计算机网络">
+
+
+
+
+  <meta name="keywords" content="计算机网络, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/03/12/network/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 计算机网络 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          计算机网络
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-03-12
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/03/12/network/" data-title="计算机网络">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OSI参考模型有7层，TCP-IP有4层（一般看作5层）"><span class="toc-text">OSI参考模型有7层，TCP/IP有4层（一般看作5层）</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#OSI参考模型和TCP-IP模型的特性对比"><span class="toc-text">OSI参考模型和TCP/IP模型的特性对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#传输层：TCP-IP-相关知识，和-UDP-比较"><span class="toc-text">传输层：TCP/IP 相关知识，和 UDP 比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP"><span class="toc-text">UDP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三次握手"><span class="toc-text">三次握手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四次挥手"><span class="toc-text">四次挥手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li></ol></li></ol>
+    </li></div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="OSI参考模型有7层，TCP-IP有4层（一般看作5层）"><a href="#OSI参考模型有7层，TCP-IP有4层（一般看作5层）" class="headerlink" title="OSI参考模型有7层，TCP/IP有4层（一般看作5层）"></a>OSI参考模型有7层，TCP/IP有4层（一般看作5层）</h2><a id="more"></a>
+<p>#5层参考模型 #</p>
+<table><br>    <tr><br>        <td><br>            应用层<br><br>            (用户对用户)<br>        </td><br>        <td><br>            任务：提供系统与用户的接口<br><br>            功能：1.文件传输; 2.访问和管理; 3.电子邮件服务<br>            协议：FTP(21), SMTP(25), POP3(110), HTTP(80)<br><br>        </td><br>    </tr><br>    <tr><br>        <td><br>            传输层（运输层）<br><br>            （应用对应用，进程对进程）<br>        </td><br>        <td><br>            传输单位：报文段（TCP）或用户数据报（UDP）<br><br>            任务：负责主机中两个进程之间的通讯<br><br>            功能：1.为端到端连接提供可靠的传输服务；2.为端到端连接提供流量控制,差<br>                    错控制,服务质量等管理服务<br><br>            协议：TCP，UDP<br>        </td><br>    </tr><br><br>    <tr><br>        <td><br>            网络层<br><br>            (网络层，IP层)<br><br>            (主机对主机)<br>        </td><br>        <td><br>            传输单体：数据报<br><br>            所实现的硬件：路由器<br><br>            任务：1.将传输层传下来的报文段封装成分组；2.选择适当的路由，使传输层<br>                    传下来的分组能够交付到目的主机<br><br>            功能：1.为传输层提供服务；2.组包和拆包；3.路由选择；4拥塞控制<br><br>            协议：ICMP，ARP，RARP，IP，IGMP<br>        </td><br>    </tr><br>    <tr><br>        <td><br>        数据链路层<br><br>        (链路层)<br>        </td><br>        <td><br>            传输单位：帧<br><br>            所实现的硬件：交换机，网桥<br><br>            任务：将网络层传下来的IP数据报组装成帧<br><br>            功能：1.链路连接的建立，拆除，分离；2.帧定界和帧同步；3.差错检测<br><br>            协议：PPP，HDLC，ARQ<br>        </td><br>    </tr><br>    <tr><br>        <td><br>            物理层<br>        </td><br>        <td><br>            传输单位：比特<br><br>            所实现的硬件：集线器，中继器<br><br>            任务：透明地传输比特流<br>            功能：为数据端设备提供传送数据道路<br>        </td><br>    </tr><br><br></table>
+
+
+<p>补充：</p>
+<p>会话层：功能是在两个结点间建立，维护，释放面向用户的连接，并对会话管理和控制，保证会话数据可靠传输</p>
+<p>表示层：负责处理为两个内部结构不同的通信系统间交换信息的表示结构，能为数据加密和解密</p>
+<p>问：</p>
+<p>TCP/IP是4层还是5层</p>
+<p>答：是4层。5层是综合了OSI和TCP/IP的优点，才有了5层</p>
+<h1 id="OSI参考模型和TCP-IP模型的特性对比"><a href="#OSI参考模型和TCP-IP模型的特性对比" class="headerlink" title="OSI参考模型和TCP/IP模型的特性对比"></a>OSI参考模型和TCP/IP模型的特性对比</h1><table><br><br>    <tr><br>        <td><br>            OSI参考模型<br>        </td><br>        <td><br>            1.3个主要概念：服务，接口，协议<br><br>            2.协议有很好的隐蔽性<br><br>            3.产生在协议发明之前<br><br>            4.共有7层<br><br>            网络层：连接和无连接<br><br>            传输层：仅有面向连接<br>        </td><br>    </tr><br>    <tr><br>        <td><br>            TCP/IP参考模型<br>        </td><br>        <td><br>            1.没有明确区分服务，接口，协议<br><br>            2.产生在协议发明之后<br><br>            3.共有4层（不是5层）<br><br>            网络层：仅有无连接<br><br>            传输层：面向连接和无连接<br>        </td><br>    </tr><br><br></table>
+
+
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p>用电子邮件为例解释7层工作原理：</p>
+<p>首先在应用层编辑邮件，然后把编辑好的邮件发给表示层，为了提高速度，表示层将邮件压缩，表示可以选择加密邮件或者不加密，然后再传给会话层，这时候会话层会发信息提示你要给别人发邮件了，然后把邮件传给传输层，传输层把邮件分段（数据无法一次传输），分段的邮件到达网络层，网络层对数据段进行封装并加入报头（形成数据报），其实应用层开始每往下层传输就要加入报头及信息（在数据链路层既要加报头又要加报尾），然后网络层对传输路径进行选择，之后在传给数据链路层，数据链输层将数据报封装成帧，最后把信息发到物理层，形成比特流，进而送到传输媒体</p>
+<hr>
+<h2 id="传输层：TCP-IP-相关知识，和-UDP-比较"><a href="#传输层：TCP-IP-相关知识，和-UDP-比较" class="headerlink" title="传输层：TCP/IP 相关知识，和 UDP 比较"></a>传输层：TCP/IP 相关知识，和 UDP 比较</h2><p>数据链路层按MAC地址寻址，网络层按IP地址寻址，传输层按端口号寻址</p>
+<p>只有通过IP地址和端口号才能唯一确定的连接的端口称为套接字。它唯一地标识了网络中的某台主机上的某个应用。</p>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>1.传送数据前无需建立连接，数据到达后也无需确认</p>
+<p>2.不可靠交付</p>
+<p>3.报文段头部短，传输开销小</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>1.面向连接，不提供广播和多播</p>
+<p>2.可靠交付</p>
+<p>3.报文段头部长，传输开销大</p>
+<p>问：UDP数据报与IP分组的区别？</p>
+<p>答：IP分组要经过互联网中许多路由器的存储转发，但UDP数据报是在传输层的端到端抽象的逻辑信道中传送的，UDP数据报只是IP数据报中的数据部分</p>
+<p>TCP传输连接为3个部分：连接建立，数据传送和连接释放</p>
+<p>TCP连接的端点叫做套接字</p>
+<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>第一步：客户机A的TCP向服务器B发出连接请求报文段，其中同步位SYN=1（TCP规定，SYN报文段不能携带数据，但要消耗一个序号），并选择序号seq=x，表明传送数据时的第一个数据字节的序号是x</p>
+<p>第二步：服务器收到数据报，从SYN=1知道，这是一个建立连接的请求，如果同意，则发回确认。B在确认报段中使SYN=1，ACK=1，确认序号ACK=x+1，自己选择序号seq=y，该报文段也不能携带数据</p>
+<p>第三部：A收到报文段后向B给出确认，其ACK=1，确认序号ack=y+1。A的TCP通知上层应用进程，连接已经建立。B的TCP收到主机A的确认后，通知上层应用进程，此时TCP连接已经建立。</p>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p>第一步：数据传输结束后，通信双方都可释放连接。假若A先发出连接释放报文段，并停止发送数据。A将连接释放报文段FIN=1，序号seq=u。当发送FIN报文时，发送FIN的一端不能发送数据，但是对方还是可以发送数据</p>
+<p>第二步：B发出确认，确认号ack=u+1，而报文段自己的序号seq=v，ACK=1。B若发送数据，则A仍要接收</p>
+<p>第三步：若B已经没有要向A发送的数据，其应用进程就通知TCP释放连接，报文段为，FIN=1，seq=w</p>
+<p>第四步：A收到连接释放报文段后，必须发出确认。在确认报文段中，ACK=1，确认序号ack=w+1，自己的序号seq=u+1，并等待2MSL秒，若A无回复，则关闭连接。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>问：为什么TCP在建立连接时不能每次都选择相同的，固定的初始序号？<br>答：假定有一些在网络中滞留时间较长的TCp报文段最后到达了另一个主机，但是传送该报文段的那个连接早已释放了，这时到达另一个主机TCP连接是一条新的TCP连接，这时在新的TCP连接下主机接收到旧的连接，结果会产生错误</p>
+<p>问：为什么不采用”两次握手“建立连接<br>答：改成两次，有可能发生死锁。比如主机A给主机B发送连接请求分组，主机B收到这个分组后，发送了应答分组，但是在途中，该应答分组丢失。但是主机B以为该分组已到达主机A，已成功建立连接，开始发送数据分组。但是主机A没有收到的应答分组，并不知道B是否已经准备好，也不知道B发送数据使用的序列，甚至怀疑B是否收到自己的请求分组，这种情况下，A认为连接并未建立成功，所以将忽略B发来的任何数据分组，只等待应答分组，B发出的分组超时后将重发，重复发送同样的分组，从而形成了死锁</p>
+<p>问：为什么要等待2MSL秒<br>答：为了保证A最后发出的确认报文段能够到达B。如果A不等待2MSL，A返回的最后确认报文段丢失，B不能进入正常关闭状态，而A此时已经关闭，也不可能在重传</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/03/12/network/">https://kiudou.github.io/2018/03/12/network/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/计算机网络/">计算机网络</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/17/virtualenv-error/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">/usr/local/bin/virtualenv /usr/local/Cellar/python/3.6.4_3/bin/python3.6</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/03/12/database/">
+        <span class="next-text nav-default">数据库</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

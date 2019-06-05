@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="堆及堆应用">
+
+
+
+
+  <meta name="keywords" content="数据结构, 堆, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/01/20/heap/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 堆及堆应用 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          堆及堆应用
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-20
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/01/20/heap/" data-title="堆及堆应用">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#堆的定义"><span class="toc-text">堆的定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#堆的维护"><span class="toc-text">堆的维护</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建堆"><span class="toc-text">建堆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#堆排序"><span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#堆的应用-优先队列"><span class="toc-text">堆的应用-优先队列</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h1 id="堆的定义"><a href="#堆的定义" class="headerlink" title="堆的定义"></a>堆的定义</h1><p>(二叉)堆是一个数组，可以被看成一个近似的完全二叉树，树上的每一个结点对应数组中的一个元素，如图</p>
+<a id="more"></a>
+<p><img src="http://r.photo.store.qq.com/psb?/V13zmFZT2vlTI6/baSy*4DEcmFwUwy5mnlCBFKSBNSwuw1Rt0J0YypckI4!/r/dGgBAAAAAAAA" alt=""></p>
+<p>假若A[i]为堆的一个结点，则他的左右子节点为A[2*i], A[2*i+1],根结点为A[1]。即A[1]的子结点为A[2]和A[3]</p>
+<p>堆可以分为最大堆和最小堆</p>
+<p>最大堆：最大堆中某个结点的值必须小于等于其父结点的值，即A[parent(i)] &gt;= A[i]</p>
+<p>最小堆：最小堆中某个结点的值必须大于等于其父结点的值，即A[parent(i)] &lt;= A[i]</p>
+<hr>
+<h1 id="堆的维护"><a href="#堆的维护" class="headerlink" title="堆的维护"></a>堆的维护</h1><p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/16GlZedzHG5ND0rwk*QBU7sYfhxbpePOSVdY.iOidXs!/b/dFsBAAAAAAAA&amp;bo=BwI1AQcCNQEDCSw!&amp;rf=viewer_4" alt=""></p>
+<p>如图(a)中，违背了最大堆的性质，4 &lt; 14 ,但4却是14的父亲，所以需要维护堆，经过(b),使得变成 (c) 这种情况,满足最大堆中某个结点的值必须小于等于其父结点的值</p>
+<p>维护堆的代码执行过程：时间复杂度为O(logn)</p>
+<pre><code>//该函数作用为了将i点及相邻的子结点中最大的点放到i点，以此来维护最大堆的性质
+void MaxHeapify(int *A, int i, int n) //A数组存放堆值，i点要进行的堆维护，n结点的总数量，n为全局变量
+{
+    int l = i &lt;&lt; 1; //i结点的左结点
+    int r = i &lt;&lt; 1 | 1 ; //i结点的右结点
+    if (l &lt;= n &amp;&amp; A[i] &lt; A[l]) { //左孩子的值比i点的值大
+        largest = l; 
+    }
+    else {
+        largest = i;
+    }
+    if (r &lt;= n &amp;&amp; A[largest] &lt; A[r]) {
+        largest = r; //右孩子的值比i点的值大
+    }
+    if (largest != i) {
+        swap(A[largest], A[i]); //交换值
+        MaxHeapify(int *A, int largest); //继续向以largest为结点的堆维护最大堆的性质
+    }
+}
+</code></pre><hr>
+<h1 id="建堆"><a href="#建堆" class="headerlink" title="建堆"></a>建堆</h1><p>建堆是将一个无序数组构造成一个最大堆(最小堆反之)，是最大堆，而非有序堆</p>
+<p>建堆代码：时间复杂度为O(n)</p>
+<pre><code>void BuildMaxHeap(int *A) //A数组存放堆值，n结点的总数量，n为全局变量
+{
+    for(int i = n/2; i&gt;=1; i--){ 
+        MaxHeapify(A, i); //进行堆维护
+    }
+}
+</code></pre><p>建堆过程如图：</p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/teZn9iInpa478M9mXnR*tleOsqECE8rvhw2lWaTrIdw!/b/dPIAAAAAAAAA&amp;bo=rgKDAq4CgwIDCSw!&amp;rf=viewer_4" alt=""></p>
+<hr>
+<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><p>堆排序：将堆中没有排序的点与A[1]交换，在进行对维护，使得A[1]又是在没有排序的堆中最大，循环该操作，直到A[1]点最小为止</p>
+<p>堆排序代码：</p>
+<pre><code>void HeapSort(int *A) //n结点的总数量，n为全局变量
+{
+    BuildMaxHeap(A, n); //建堆
+    for(int i = n; i &gt;= 2; i--){
+        swap(A[i],A[1]); //交换A[i]和A[1]的值
+        MaxHeapify(A, 1,n-1); //堆维护
+    }
+}
+</code></pre><p>堆排序过程：黑色表示已经排完序的</p>
+<p>(a)中16先和1对换，1再进行堆维护，变成(b)，循环往复，得到(j)，得到有序数组(k)</p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/64pJTMMr4pmvNWYtzlBdKKEl1lcFo1RFrhZtYXhBBcY!/b/dF8BAAAAAAAA&amp;bo=NQR2ATUEdgEDCSw!&amp;rf=viewer_4" alt=""><br><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/AswItYRmAQ1P*ulnE3Nb88gxgVKWpNjS4gL7uG9DiRI!/b/dGgBAAAAAAAA&amp;bo=vgO5Ab4DuQEDCSw!&amp;rf=viewer_4" alt=""></p>
+<hr>
+<h1 id="堆的应用-优先队列"><a href="#堆的应用-优先队列" class="headerlink" title="堆的应用-优先队列"></a>堆的应用-优先队列</h1><p>优先队列的实现原理是堆</p>
+<p>优先队列分最大优先队列和最小优先队列</p>
+<p>我们以最大优先队列为例，并且支持以下操作，下列操作代码都是底层代码</p>
+<p>返回队列中最大值:</p>
+<pre><code>int HeapMaxValue(int *A)
+{
+    return A[1];
+}
+</code></pre><p>返回队列中最大值，并且将该值从队列中删去:</p>
+<pre><code>int HeapExtractMaxValue(int *A) //n是全局变量，代表结点个数
+{
+    if(n &lt; 1) {
+        printf(&quot;heap underflow!&quot;);
+    }
+    int max = A[1];
+    A[1] = A[n];
+    n--;
+    MaxHeapify(A, 1); //堆维护
+    return max;
+}
+</code></pre><p>改变某个叶子结点的值:</p>
+<pre><code>void HeapChangeKey(int *A, int i, int key)
+{
+    A[i] = key;
+    while( i &gt; 1 &amp;&amp; A[i&gt;&gt;1] &lt; A[i]) { //为了维护堆的性质
+        swap(A[i&gt;&gt;1], A[i]); //交换
+        i = i &gt;&gt; 1;
+    }
+}
+</code></pre><p>改变某个结点的值，图过程:将4变成15，在与父亲结点进行比较，进行堆维护</p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/NCZC31l0RAUXk0xd7c*rTjBue9*HgnzvrOZM9Xr5m5Q!/b/dF4BAAAAAAAA&amp;bo=6AM8AugDPAIDCSw!&amp;rf=viewer_4" alt=""></p>
+<p>插入值:</p>
+<pre><code>void HeapInsert(int *A, int key) //n是全局变量，代表结点个数
+{
+    n++;
+    A[n] = key;
+    HeapChangeKey(int *A, int n, int key);
+}
+</code></pre>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/01/20/heap/">https://kiudou.github.io/2018/01/20/heap/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/数据结构/">数据结构</a>
+            
+              <a href="/tags/堆/">堆</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/20/quick_sort/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">快速排序</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/12/28/git/">
+        <span class="next-text nav-default">git的简单用法</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

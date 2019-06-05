@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="ubuntu linux下如何配置ip地址以及DNS">
+
+
+
+
+  <meta name="keywords" content="IP, 网络, DNS, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2017/10/12/ubuntu linux下如何配置ip地址以及DNS/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> ubuntu linux下如何配置ip地址以及DNS - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          ubuntu linux下如何配置ip地址以及DNS
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-12
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/10/12/ubuntu linux下如何配置ip地址以及DNS/" data-title="ubuntu linux下如何配置ip地址以及DNS">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        <p><img src="https://images2015.cnblogs.com/blog/1114607/201703/1114607-20170323205939908-190305527.jpg" alt=""></p>
+<p>该图片为login.sh的内容</p>
+<a id="more"></a>
+<p>后面部分转自 <a href="http://os.51cto.com/art/201001/175164.htm" target="_blank" rel="noopener">http://os.51cto.com/art/201001/175164.htm</a></p>
+<p>一、使用命令设置ubuntu的ip地址</p>
+<p>1.修改配置文件blacklist.conf禁用IPV6：</p>
+<pre><code>sudo vi /etc/modprobe.d/blacklist.conf
+</code></pre><p>2.在文档最后添加 blacklist ipv6，然后查看修改结果：</p>
+<pre><code>cat /etc/modprobe.d/blacklist.conf
+</code></pre><p>3.设置IP（设置网卡eth0的IP地址和子网掩码）</p>
+<pre><code>sudo ifconfig eth0 192.168.2.1 netmask 255.255.255.0
+</code></pre><p>4.设置网关</p>
+<pre><code>sudo route add default gw 192.168.2.254
+</code></pre><p>5.设置DNS 修改/etc/resolv.conf，在其中加入nameserver DNS的地址1 和 nameserver DNS的地址2 完成。</p>
+<p>6.重启网络服务（若不行，请重启ubuntu：sudo reboot）：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre><p>7.查看当前IP：</p>
+<pre><code>ifconfig
+</code></pre><p>二、直接修改系统Ubuntu Linux配置文件</p>
+<p>网络Ubuntu Linux配置文件是：/etc/network/interfaces</p>
+<p>打开后里面可设置DHCP或手动设置静态ip。前面auto eth0，让网卡开机自动挂载。</p>
+<p>1.以DHCP方式配置网卡</p>
+<p>编辑文件/etc/network/interfaces：</p>
+<pre><code>sudo vi /etc/network/interfaces
+</code></pre><p>并用下面的行来替换有关eth0的行：</p>
+<pre><code># The primary network interface - use DHCP to find our address
+auto eth0
+iface eth0 inet dhcp
+</code></pre><p>用下面的命令使网络设置生效：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre><p>也可以在命令行下直接输入下面的命令来获取地址</p>
+<pre><code>sudo dhclient eth0
+</code></pre><ol start="2">
+<li><p>为网卡配置静态IP地址<br>编辑文件/etc/network/interfaces：</p>
+<p> sudo vi /etc/network/interfaces</p>
+</li>
+</ol>
+<p>并用下面的行来替换有关eth0的行：</p>
+<pre><code># The primary network interface
+auto eth0
+iface eth0 inet static
+address 192.168.2.1
+gateway 192.168.2.254
+netmask 255.255.255.0
+#network 192.168.2.0
+#broadcast 192.168.2.255
+</code></pre><p>将上面的ip地址等信息换成你自己就可以了.用下面的命令使网络设置生效：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre><p>3.设定第二个IP地址(虚拟IP地址)<br>编辑文件/etc/network/interfaces：</p>
+<pre><code>sudo vi /etc/network/interfaces
+</code></pre><p>在该文件中添加如下的行：</p>
+<pre><code>auto eth0:1
+iface eth0:1 inet static
+address x.x.x.x
+netmask x.x.x.x
+network x.x.x.x
+broadcast x.x.x.x
+gateway x.x.x.x
+</code></pre><p>根据你的情况填上所有诸如address,netmask,network,broadcast和gateways等信息：<br>用下面的命令使网络设置生效：<br>sudo /etc/init.d/networking restart</p>
+<p>4.设置主机名称(hostname)<br>使用下面的命令来查看当前主机的主机名称：</p>
+<pre><code>sudo /bin/hostname
+</code></pre><p>使用下面的命令来设置当前主机的主机名称：</p>
+<pre><code>sudo /bin/hostname newname
+</code></pre><p>系统启动时,它会从/etc/hostname来读取主机的名称。</p>
+<p>5.Ubuntu Linux配置DNS<br>首先，你可以在/etc/hosts中加入一些主机名称和这些主机名称对应的IP地址，这是简单使用本机的静态查询。要访问DNS 服务器来进行查询,需要设置/etc/resolv.conf文件，假设DNS服务器的IP地址是192.168.2.2, 那么/etc/resolv.conf文件的内容应为：</p>
+<pre><code>search chotim.com
+nameserver 192.168.2.2
+</code></pre><p>6.手动重启网络服务：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre><p>一、使用命令设置ubuntu的ip地址</p>
+<p>1.修改配置文件blacklist.conf禁用IPV6：</p>
+<pre><code>sudo vi /etc/modprobe.d/blacklist.conf
+</code></pre><p>2.在文档最后添加 blacklist ipv6，然后查看修改结果：</p>
+<pre><code>cat /etc/modprobe.d/blacklist.conf
+</code></pre><p>3.设置IP（设置网卡eth0的IP地址和子网掩码）</p>
+<pre><code>sudo ifconfig eth0 192.168.2.1 netmask 255.255.255.0
+</code></pre><p>4.设置网关</p>
+<pre><code>sudo route add default gw 192.168.2.254
+</code></pre><p>5.设置DNS 修改/etc/resolv.conf，在其中加入nameserver DNS的地址1 和 nameserver DNS的地址2 完成。</p>
+<p>6.重启网络服务（若不行，请重启ubuntu：sudo reboot）：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre><p>7.查看当前IP：</p>
+<pre><code>ifconfig
+</code></pre><p>二、直接修改系统Ubuntu Linux配置文件</p>
+<p>网络Ubuntu Linux配置文件是：/etc/network/interfaces<br>打开后里面可设置DHCP或手动设置静态ip。前面auto eth0，让网卡开机自动挂载。</p>
+<p>1.以DHCP方式配置网卡</p>
+<p>编辑文件/etc/network/interfaces：</p>
+<pre><code>sudo vi /etc/network/interfaces
+</code></pre><p>并用下面的行来替换有关eth0的行：</p>
+<pre><code>#The primary network interface - use DHCP to find our address
+auto eth0
+iface eth0 inet dhcp
+</code></pre><p>用下面的命令使网络设置生效：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre><p>也可以在命令行下直接输入下面的命令来获取地址</p>
+<pre><code>sudo dhclient eth0
+</code></pre><p>2.为网卡配置静态IP地址<br>编辑文件/etc/network/interfaces：</p>
+<pre><code>sudo vi /etc/network/interfaces
+</code></pre><p>并用下面的行来替换有关eth0的行：</p>
+<pre><code>#The primary network interface
+auto eth0
+iface eth0 inet static
+address 192.168.2.1
+gateway 192.168.2.254
+netmask 255.255.255.0
+#network 192.168.2.0
+#broadcast 192.168.2.255
+</code></pre><p>将上面的ip地址等信息换成你自己就可以了.用下面的命令使网络设置生效：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre><p>3.设定第二个IP地址(虚拟IP地址)</p>
+<p>编辑文件/etc/network/interfaces：</p>
+<pre><code>sudo vi /etc/network/interfaces
+</code></pre><p>在该文件中添加如下的行：</p>
+<pre><code>auto eth0:1
+iface eth0:1 inet static
+address x.x.x.x
+netmask x.x.x.x
+network x.x.x.x
+broadcast x.x.x.x
+gateway x.x.x.x
+</code></pre><p>根据你的情况填上所有诸如address,netmask,network,broadcast和gateways等信息：<br>用下面的命令使网络设置生效：<br>sudo /etc/init.d/networking restart</p>
+<p>4.设置主机名称(hostname)</p>
+<p>使用下面的命令来查看当前主机的主机名称：</p>
+<pre><code>sudo /bin/hostname
+</code></pre><p>使用下面的命令来设置当前主机的主机名称：</p>
+<pre><code>sudo /bin/hostname newname
+</code></pre><p>系统启动时,它会从/etc/hostname来读取主机的名称。</p>
+<p>5.Ubuntu Linux配置DNS</p>
+<p>首先，你可以在/etc/hosts中加入一些主机名称和这些主机名称对应的IP地址，这是简单使用本机的静态查询。要访问DNS 服务器来进行查询,需要设置/etc/resolv.conf文件，假设DNS服务器的IP地址是192.168.2.2, 那么/etc/resolv.conf文件的内容应为：</p>
+<pre><code>search chotim.com
+nameserver 192.168.2.2
+</code></pre><p>6.手动重启网络服务：</p>
+<pre><code>sudo /etc/init.d/networking restart
+</code></pre>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2017/10/12/ubuntu linux下如何配置ip地址以及DNS/">https://kiudou.github.io/2017/10/12/ubuntu linux下如何配置ip地址以及DNS/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/IP/">IP</a>
+            
+              <a href="/tags/网络/">网络</a>
+            
+              <a href="/tags/DNS/">DNS</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/10/12/Linux mint 17.2 系统下安装hust oj/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Linux mint 17.2 系统下安装hust oj</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/10/12/有关于string的一些用法/">
+        <span class="next-text nav-default">有关于string的一些用法</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

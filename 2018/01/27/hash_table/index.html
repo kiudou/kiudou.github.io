@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="哈希表">
+
+
+
+
+  <meta name="keywords" content="数据结构, hash, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/01/27/hash_table/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 哈希表 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          哈希表
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-27
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/01/27/hash_table/" data-title="哈希表">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#散列表"><span class="toc-text">散列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#直接寻址法"><span class="toc-text">直接寻址法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决冲突的办法"><span class="toc-text">解决冲突的办法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#链接法"><span class="toc-text">链接法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开放寻址法"><span class="toc-text">开放寻址法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完全散列"><span class="toc-text">完全散列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#精心设计散列函数"><span class="toc-text">精心设计散列函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#除法散列法"><span class="toc-text">除法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#乘法散列法"><span class="toc-text">乘法散列法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全域散列法"><span class="toc-text">全域散列法</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/mE3am64hK2596BwkfHpn036X1XpR3gzpGtGwTZ5c9pI!/b/dMYAAAAAAAAA&amp;bo=2wQTAtsEEwIBCS4!&amp;rf=viewer_4" alt=""></p>
+<h1 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h1><p>散列表又可以称之为哈希表，是实现字典操作的一种有效数据结构</p>
+<p>最坏情况下查找元素时间为O(n)，但是平均时间为O(1)</p>
+<p>适用于静态关键字集合，如程序设计语言中的保留字集合，CD-ROM上的文件名集合</p>
+<a id="more"></a>
+<h2 id="直接寻址法"><a href="#直接寻址法" class="headerlink" title="直接寻址法"></a>直接寻址法</h2><p>当全域U比较小时，直接寻址是一种简单有效的技术，用数组表示动态集合，记为T[0..m]，其中每个位置称为槽。</p>
+<p>直接寻址法就是将元素直接放在槽中，如果不放，则需要用某种方法表示槽为空。</p>
+<p>操作：</p>
+<pre><code>typedef struct node {
+    int key;
+} *NODE;
+
+NODE direct_address_search(NODE T[], int k) { //查找
+    return T[k];
+}
+
+
+void direct_address_insert(NODE T[], int x) { //插入
+    T[x-&gt;key] = x;
+}
+
+void direct_address_delete(NODE T[], int x) { //删除
+    T[x-&gt;key] = NULL;
+}
+</code></pre><hr>
+<p>直接寻址的缺点：当要储存的关键字比可能要储存的关键字小的多时，那么被分配的大部分空间会被浪费，那么需要散列函数列重新计算关键字的值T(h(k))，再放到槽里，h(k)可以称之为散列值。</p>
+<p>存在的问题：当两个散列值映射到同一槽中时，形成了冲突。</p>
+<p>为了解决冲突，有两种方法，一：通过精心设计的散列函数来尽量减少冲突的次数，二：需要有解决冲突的办法。</p>
+<hr>
+<hr>
+<h2 id="解决冲突的办法"><a href="#解决冲突的办法" class="headerlink" title="解决冲突的办法"></a>解决冲突的办法</h2><h3 id="链接法"><a href="#链接法" class="headerlink" title="链接法"></a>链接法</h3><p>在链接法中，把散列到同一槽中的所有元素都放在一个链表中，如图</p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/AH2O6Nt3AYZmzFm6fxQ2cnT44z0XJZNYXgixuSXIy7c!/b/dFYBAAAAAAAA&amp;bo=zARQAswEUAIDCSw!&amp;rf=viewer_4" alt=""></p>
+<p>装载因子 等于n/m，n为存放的元素个数，m位槽的个数</p>
+<p>一次不成功或成功的查找的平均时间都为O(1+n/m)</p>
+<h3 id="开放寻址法"><a href="#开放寻址法" class="headerlink" title="开放寻址法"></a>开放寻址法</h3><p>在开放寻址法中，散列表可能被填满，以至于不能插入新的元素。该方法导致结果是装填因子不会超过1</p>
+<p>优点：不需要用指针，而是计算要存取的槽序列，于是不需要存储指针而节省的空间，是的可以用同样的空间来提供更多的槽，潜在减少冲突，提高了检索速度</p>
+<p>为了使用开放寻址法插入一个元素，需要连续的检查散列表，称为探查</p>
+<pre><code>int hash_insert(NODE T[], int k) { //插入
+    int i = 0, j;
+    while(i != m) {
+        j = h(k, i); // h为探查序列
+        if(T[j] != NULL) {
+            T[j] = k;
+            return j;
+        }else{
+            i = i + 1；
+        }
+    }
+    print(&quot;hash table overflow\n&quot;);
+}
+
+int hash_search(NODE T[], int k) { //查找
+    i = 0;
+    while(T[i] != NULL || i != m) {
+        j = h(k, i); //探查序列
+        if(T[j] == k) {
+            return j;
+        }
+        i = i + 1;
+    }
+    return NULL;
+}
+</code></pre><p>从开放寻址法散列表中删除一个元素是比较困难的。解决办法是删除时候用delete代替NULL标记槽。</p>
+<p>为此在必须删除关键字的应用中，更常见的做法是使用链接法解决冲突。</p>
+<p>有三种技术来计算开放寻址法中的探查序列：</p>
+<p>1.线性探查</p>
+<p>散列函数 h(k,i) = (h’(k) + i) mod m, i = 0,…,m-1 。h’为辅助散列函数</p>
+<p>该方法存在一次群集的现象，当一个空槽前有i个满的槽时，该空槽下一次会有很大概率被占用，以至于被占用的槽越来越长，平均查找时间也会越来越大。</p>
+<p>2.二次探查</p>
+<p>散列函数 h(k,i) = (h’(k) + bi + ci*i) mod m, i = 0,…,m-1。 b，c为正的辅助常数。</p>
+<p>该方法存在二次群集的现象</p>
+<p>3.双重散列</p>
+<p>二重散列是用于开放寻址法的最好方法之一，因为他所产生的排列具有随机选择排列的许多特性</p>
+<p>散列函数 h(k,i) = (h1’(k) + i*h2(k)) mod m, i = 0,…,m-1。 h1和h2为辅助散列函数</p>
+<p>初始探测位置为T[h1(k)]，然后每次移动i*h2(k) mod m  。</p>
+<h3 id="完全散列"><a href="#完全散列" class="headerlink" title="完全散列"></a>完全散列</h3><p>该方法最坏情况下访问时间为O(1)</p>
+<p>该散列结构如图:</p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/ZcKgBcF4flgIMHqf0l9SOL8E28JnvGT3zz53fC4LIJE!/b/dAcBAAAAAAAA&amp;bo=XARWAlwEVgIDCSw!&amp;rf=viewer_4" alt=""></p>
+<p>采用一级散列表和二级散列表，在同一槽位的元素进行二级散列</p>
+<hr>
+<h3 id="精心设计散列函数"><a href="#精心设计散列函数" class="headerlink" title="精心设计散列函数"></a>精心设计散列函数</h3><h4 id="除法散列法"><a href="#除法散列法" class="headerlink" title="除法散列法"></a>除法散列法</h4><p>函数表示 h(k) = k mod m;</p>
+<p>在进行除法散列法时，m不应为2的幂，如何m=2的p次幂，h(k)就是k的p个最低位数字，所以一个不太接近<br>2的整数幂的素数，常常是m的一个较好选择</p>
+<h4 id="乘法散列法"><a href="#乘法散列法" class="headerlink" title="乘法散列法"></a>乘法散列法</h4><p>函数表示 h(k) = int(m(kA mod 1))</p>
+<p>kA mod 1 代表取kA的小数部分，即kA-int(kA)</p>
+<p>进行乘法散列法时，对于m的取值不是很关键，一般选择2的某个幂，因为在大多数计算机上比较容易实现</p>
+<h4 id="全域散列法"><a href="#全域散列法" class="headerlink" title="全域散列法"></a>全域散列法</h4><p>随机地选择散列函数，使之独立于要存储的关键字，不管别人选什么关键字，其平均性能都很好，这就是全域散列</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/01/27/hash_table/">https://kiudou.github.io/2018/01/27/hash_table/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/数据结构/">数据结构</a>
+            
+              <a href="/tags/hash/">hash</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/31/list/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">链表的基本操作和题</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/26/tree_compare/">
+        <span class="next-text nav-default">树的比较</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

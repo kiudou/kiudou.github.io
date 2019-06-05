@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Maven">
+
+
+
+
+  <meta name="keywords" content="Maven, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/11/02/Maven/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Maven - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Maven
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-11-02
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/11/02/Maven/" data-title="Maven">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven的依赖机制"><span class="toc-text">Maven的依赖机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven的生命周期"><span class="toc-text">Maven的生命周期</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="Maven的依赖机制"><a href="#Maven的依赖机制" class="headerlink" title="Maven的依赖机制"></a>Maven的依赖机制</h2><p>如果想使用Log4j作为项目的日志</p>
+<p><strong>在传统的方式中</strong></p>
+<a id="more"></a>
+<p>1.访问 <a href="http://logging.apache.org/log4j/" target="_blank" rel="noopener">http://logging.apache.org/log4j/</a></p>
+<p>2.下载 Log4 j的 jar 库</p>
+<p>3.复制 jar 到项目类路径</p>
+<p>4.手动将其包含到项目的依赖</p>
+<p>5.所有的管理需要一切由自己做</p>
+<p>注：如果想更新版本，重新来一遍上述操作</p>
+<p><strong>在Maven中</strong></p>
+<pre><code>//在pom,xml文件中加入
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+    //------------------------------------------- 该三行为坐标
+    &lt;groupId&gt;log4j&lt;/groupId&gt; //这是项目组的编号，这在组织或项目中通常是独一无二的
+    &lt;artifactId&gt;log4j&lt;/artifactId&gt; //这是项目的ID 
+    &lt;version&gt;1.2.14&lt;/version&gt; //项目的版本
+    //--------------------------------------------
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre><p>当 Maven 编译或构建，log4j 的 jar 会自动下载，并把它放到 Maven 本地存储库</p>
+<h2 id="Maven的生命周期"><a href="#Maven的生命周期" class="headerlink" title="Maven的生命周期"></a>Maven的生命周期</h2><pre><code>生命周期阶段                描述
+validate                验证项目是否正确，并且所有必要的信息可用于完成构建过程
+initialize            建立初始化状态，例如设置属性
+generate-sources        产生任何的源代码包含在编译阶段
+process-sources        处理源代码，例如，过滤器值
+generate-resources    包含在包中产生的资源
+process-resources    复制和处理资源到目标目录，准备打包阶段
+compile                编译该项目的源代码
+process-classes        从编译生成的文件提交处理，例如：Java类的字节码增强/优化
+generate-test-sources    生成任何测试的源代码包含在编译阶段
+process-test-sources    处理测试源代码，例如，过滤器任何值
+test-compile            编译测试源代码到测试目标目录
+process-test-classes    处理测试代码文件编译生成的文件
+test                    运行测试使用合适的单元测试框架（JUnit）
+prepare-package        执行必要的任何操作的实际打包之前准备一个包
+package                提取编译后的代码，并在其分发格式打包，如JAR，WAR或EAR文件
+pre-integration-test    完成执行集成测试之前所需操作。例如，设置所需的环境
+integration-test        处理并在必要时部署软件包到集成测试可以运行的环境
+pre-integration-test    完成集成测试已全部执行后所需操作。例如，清理环境
+verify                    运行任何检查，验证包是有效的，符合质量审核规定
+install                将包安装到本地存储库，它可以用作当地其他项目的依赖
+deploy                    复制最终的包到远程仓库与其他开发者和项目共享
+</code></pre><p><strong>war包和jar包的区别</strong></p>
+<p>war包：做好一个web应用后，通常是网站，包括写的代码编译成的class文件，依赖的包，配置文件，所有的网站页面，包括html，jsp等等。打成包部署到容器中。war包放在tomcat目录的webapp下，tomcat服务器在启动的时候自行解压然后使用这个war包</p>
+<p>jar包：开发时要引用通用类，打成包便于存放管理。jar包中只是用java来写的项目打包来的，里面只有编译后的class和一些部署文件</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/11/02/Maven/">https://kiudou.github.io/2018/11/02/Maven/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Maven/">Maven</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/11/03/singletonPattern/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">singleton Pattern</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/10/13/Spring的基础知识/">
+        <span class="next-text nav-default">Spring的基础知识</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

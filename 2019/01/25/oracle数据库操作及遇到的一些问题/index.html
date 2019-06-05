@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="oracle数据库操作及遇到的一些问题">
+
+
+
+
+  <meta name="keywords" content="oracle, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2019/01/25/oracle数据库操作及遇到的一些问题/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> oracle数据库操作及遇到的一些问题 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          oracle数据库操作及遇到的一些问题
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-01-25
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2019/01/25/oracle数据库操作及遇到的一些问题/" data-title="oracle数据库操作及遇到的一些问题">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题一"><span class="toc-text">问题一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题二"><span class="toc-text">问题二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐几篇文章"><span class="toc-text">推荐几篇文章</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>记录第一次用oracle数据库时的问题和操作</p>
+<a id="more"></a>
+<pre><code>-- 显示所有用户（库）
+-- select * from all_users;
+
+-- 显示当前所有的表
+-- select * from tab;
+
+-- 查看当前数据库名
+-- select name from v$database;
+
+-- 查看当前数据库实例名
+-- select instance_name from v$instance;
+
+-- 查询数据库域名
+-- select value from v$parameter where name = &apos;db_domain&apos;;
+
+-- 查询数据库服务名
+-- select value from v$parameter where name = &apos;service_name&apos;;
+
+-- 新建用户 -- create user 用户名 identified by 密码 
+-- create user test_qi identified by test_qi
+
+-- 查看oracle数据库的数据文件的目录
+-- select * FROM DBA_DATA_FILES;
+</code></pre><h2 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h2><p>创建表时出现ORA-01950: no privileges on tablespace ‘USERS’ [closed]</p>
+<p>这个问题的主要原因是没有给用户设置大小空间,执行下列操作中的其中一个</p>
+<pre><code>ALTER USER &lt;user&gt; quota unlimited on &lt;tablespace name&gt;;
+
+or
+
+ALTER USER &lt;user&gt; quota 100M on &lt;tablespace name&gt;;
+</code></pre><p>我的执行</p>
+<pre><code>ALTER USER TEST_QI quota unlimited on USERS; // TEST_QI是我的用户名（库）
+</code></pre><h2 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h2><p>当我查询表的内容时，出现SQL Error: ORA-00942 table or view does not exist</p>
+<p>出现这个问题时，我一直以为我是不是权限没有给到位导致的，知道看到<a href="https://bbs.csdn.net/topics/90074629" target="_blank" rel="noopener">这篇博客</a>给了我一些灵感。</p>
+<p><strong>解决方法：需要知道这个表是哪个用户创建的，然后在该用户下，查询该表</strong></p>
+<p>比如，我用的是Navicat Premium连接oracle的，在oracle中，TEST_QI是我自己创建的用户</p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/Axr5SOEWgpsAnPJRIqOsgmJgmsb1phQ6dKJmhHN5iWY!/b/dL8AAAAAAAAA&amp;bo=KQQoAikEKAIDCSw!&amp;rf=viewer_4" alt="image"></p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/4VE2hYP0Awg7hsbkZWSjzMlBkVSG48a4OVvWKJsKsQ0!/b/dLYAAAAAAAAA&amp;bo=HwQVAh8EFQIDKQw!&amp;rf=viewer_4" alt="image"></p>
+<p>一定要在当前用户下查询，才能查出东西</p>
+<p>或者用oracle完整的语法查询</p>
+<pre><code>-- select * from 用户名.&quot;表名&quot;;
+-- select * from TEST_QI.&quot;test&quot;; 
+</code></pre><p><strong>最后还有一点，表要用引号引起来</strong></p>
+<h2 id="推荐几篇文章"><a href="#推荐几篇文章" class="headerlink" title="推荐几篇文章"></a>推荐几篇文章</h2><p><a href="https://blog.csdn.net/eurasiaxz/article/details/10310693" target="_blank" rel="noopener">oracle的几个概念db_name db_domain instance SID</a></p>
+<p><a href="https://www.w3cschool.cn/oraclejc/oraclejc-xzfk2qv3.html" target="_blank" rel="noopener">oracle入门教程</a></p>
+<p><a href="https://blog.csdn.net/KimSoft/article/details/4627520" target="_blank" rel="noopener">oracle对于schema的理解</a></p>
+<p><a href="https://www.cnblogs.com/zhilin-yang/p/3345933.html" target="_blank" rel="noopener">oracle赋予权限的一些操作</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2019/01/25/oracle数据库操作及遇到的一些问题/">https://kiudou.github.io/2019/01/25/oracle数据库操作及遇到的一些问题/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/oracle/">oracle</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/02/20/JPA的操作总结/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JPA的操作总结</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/12/09/迷宫的Go版代码-广度优先搜索/">
+        <span class="next-text nav-default">迷宫的Go版代码(广度优先搜索)</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

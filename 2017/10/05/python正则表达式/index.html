@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Python正则表达式">
+
+
+
+
+  <meta name="keywords" content="python, 正则表达式, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2017/10/05/python正则表达式/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Python正则表达式 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Python正则表达式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-05
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/10/05/python正则表达式/" data-title="Python正则表达式">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        <pre><code>#coding:utf-8
+import re #python正则表达式的模块
+text=&quot;hi,hiasdf&quot;
+m = re.findall(&quot;\\bhi&quot;,text) #r是raw的意思,表示对字符串不进行转义,若不加r，输出的    一直为空,因为\将后面的b转义了,要是不写r则写成\\b
+print m #输出结果为[&apos;hi&apos;, &apos;hi&apos;]
+</code></pre><a id="more"></a>
+<p>re是python里的正则表达式模块。findall是其中一个方法，用来按照提供的正则表达式，去匹配文本中的所有符合条件的字符串。返回结果是一个包含所有匹配的list。</p>
+<p>compile函数，例子，利用compile，生成一个pattern对象然后能直接用该对象匹配</p>
+<pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; pattern = re.compile(r&apos;\d+&apos;)                    # 用于匹配至少一个数字
+&gt;&gt;&gt; m = pattern.match(&apos;one12twothree34four&apos;)        # 查找头部，没有匹配
+&gt;&gt;&gt; print m
+None
+&gt;&gt;&gt; m = pattern.match(&apos;one12twothree34four&apos;, 2, 10) # 从&apos;e&apos;的位置开始匹配，没有匹配
+&gt;&gt;&gt; print m
+None
+&gt;&gt;&gt; m = pattern.match(&apos;one12twothree34four&apos;, 3, 10) # 从&apos;1&apos;的位置开始匹配，正好匹配
+&gt;&gt;&gt; print m                                         # 返回一个 Match 对象
+&lt;_sre.SRE_Match object at 0x10a42aac0&gt;
+&gt;&gt;&gt; m.group(0)   # 可省略 0
+&apos;12&apos;
+&gt;&gt;&gt; m.start(0)   # 可省略 0
+3
+&gt;&gt;&gt; m.end(0)     # 可省略 0
+5
+&gt;&gt;&gt; m.span(0)    # 可省略 0
+(3, 5)
+</code></pre><p><strong>单行模式下，点号.也能匹配换行符</strong></p>
+<pre><code>q = re.match(r&apos;This.*line\.&apos;, a, flags=re.DOTALL)
+</code></pre><p><strong>多行模式 re.MULTILINE</strong></p>
+<p>在正常情况下，行首符^和行尾符$仅仅匹配整个字符串的起始和结尾，在多行模式下，^除了匹配整个字符串的起始位置，还匹配换行符后面的位置；$除了匹配整个字符串的结束位置，还匹配换行符前面的位置。<strong>如果^在方括号内使用，则表示不匹配该字符</strong></p>
+<pre><code>re.findall(r&apos;^This.*line\.$&apos;, a, flags=re.MULTILINE) //当文本出现跨行匹配时，单        行和多行尤为重要
+</code></pre><p>“\b”在正则表达式中表示单词的开头或结尾，空格、标点、换行都算是单词的分割</p>
+<p>[]表示满足括号中任一字符。比如“[hi]”，它就不是匹配“hi”了，而是匹配“h”或者“i”。如果把正则表达式改为“[Hh]i”，就可以既匹配“Hi”，又匹配“hi”了。</p>
+<p>数字简化的写法：[0-9]，\d。类似的还有[a-zA-Z]的用法。</p>
+<p>　　要表示任意长度的数字，就可以用　　[0-9]<em>　　或者　　 \d</em></p>
+<p>　　但要注意的是，<em>表示的任意长度包括0，也就是没有数字的空字符也会被匹配出来。一个与</em>类似的符号+，表示的则是1个或更长。</p>
+<p>　　所以要匹配出所有的连续的数字串，应当用　　[0-9]+　　或者　　\d+</p>
+<p>　　\d{11}　匹配11位数字　　　　　　　1\d{10}　　匹配开头为1的11位数字</p>
+<p>匹配除换行符以外的所有字符是用“.”表示，而“*”则不是表示字符，而是表示数量：它表示前面的字符可以重复任意多次（包括0次）</p>
+<p>“\S”，它表示的是不是空白符的任意字符</p>
+<p>“\s”  匹配任何空白字符，包括空格、制表符、换页符等等</p>
+<p>”？“ 表示任意一个或零个字符</p>
+<p>比如Hi, I am Shirley Hilton. I am his wife.</p>
+<p>用“I.*e”去匹配，得到[‘I am Shirley Hilton. I am his wife’]       贪婪匹配–匹配尽可能长的</p>
+<p>用“I.*?e”匹配，得到[‘I am Shirle’, ‘I am his wife’]　　　　懒惰匹配匹配尽可能短的</p>
+<p>从下面一段文本中，匹配出所有s开头，e结尾的单词。</p>
+<p>site sea sue sweet see case sse ssee loses</p>
+<p>答案\bs\S*e\b </p>
+<p>注意不是\bs.*?e\b</p>
+<p>既然是单词，我们就不要空格，所以需要用”\S”而不是”.”</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2017/10/05/python正则表达式/">https://kiudou.github.io/2017/10/05/python正则表达式/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/python/">python</a>
+            
+              <a href="/tags/正则表达式/">正则表达式</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/10/12/有关于string的一些用法/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">有关于string的一些用法</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/10/04/ValueError need more than 1 value to unpack/">
+        <span class="next-text nav-default">ValueError need more than 1 value to unpack</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

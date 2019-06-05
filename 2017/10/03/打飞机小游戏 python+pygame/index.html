@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="打飞机小游戏 python+pygame">
+
+
+
+
+  <meta name="keywords" content="Python, Pygame, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2017/10/03/打飞机小游戏 python+pygame/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 打飞机小游戏 python+pygame - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          打飞机小游戏 python+pygame
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-03
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/10/03/打飞机小游戏 python+pygame/" data-title="打飞机小游戏 python+pygame">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        <p>首先安装python和pygame的环境，在linux下</p>
+<pre><code>sudo apt-get install python
+
+sudo apt-get install python-pygame
+</code></pre><a id="more"></a>
+<p>github项目地址:<a href="https://github.com/kiudou/fight_plane" target="_blank" rel="noopener">https://github.com/kiudou/fight_plane</a></p>
+<pre><code># -*- coding: utf-8 -*-
+import pygame
+import random
+from sys import exit
+#定义敌机类
+class Enemy:
+    def restart(self): #重置敌机的位置和速度
+        self.x = random.randint(50, 400)
+        self.y = random.randint(-200, -50)
+        self.speed = random.random()+0.1
+    def __init__(self): #初始化
+        self.restart()
+        self.image = pygame.image.load(&apos;enemy.png&apos;).convert_alpha()
+    def move(self): #向下移动
+        if self.y &lt; 800 :
+            self.y +=self.speed
+        else : #重置
+            self.restart()
+
+#定义Bullet类。封装子弹相关的数据和方法
+class Bullet:
+    def __init__(self): #初始变量,两个_,该类被创建时会被自动,不然会出现AttributeError: Bullet instance has no attribute
+        self.x = 0
+        self.y = -1
+        self.image = pygame.image.load(&apos;bullet.png&apos;).convert_alpha()
+        self.active = False #默认不激活
+    def move(self): #处理子弹的运动
+        if self.active: #激活状态下，向上移动
+            self.y -= 3
+        if self.y &lt; 0:
+            self.active = False
+    def restart(self):    #重置子弹位置
+        mouseX, mouseY = pygame.mouse.get_pos()
+        self.x = mouseX - self.image.get_width()/2
+        self.y = mouseY - self.image.get_height()/2
+        self.active = True #激活子弹
+#定义飞机类
+class Plane:
+    def restart(self):
+        self.x = 200
+        self.y = 300
+    def __init__(self):
+        self.restart()
+        self.image = pygame.image.load(&apos;plane.png&apos;).convert_alpha()
+    def move(self):
+         x,y = pygame.mouse.get_pos() #获取鼠标的位置
+         x -= self.image.get_width() / 2 #使得鼠标在飞机图像的最中间
+         y -= self.image.get_height() / 2
+         self.x = x
+         self.y = y
+
+def checkHit(enemy, bullet): #检测子弹和飞机是否相撞
+    if(bullet.x &gt; enemy.x and bullet.x &lt; enemy.x+enemy.image.get_width()) and \
+        (bullet.y &gt; enemy.y and bullet.y &lt; enemy.y+enemy.image.get_height()): #空格+\为代码换行
+        enemy.restart()
+        bullet.active = False
+        return True
+    return False
+
+def checkCrash(enemy, plane):#检测敌机与飞机是否相撞
+    if (plane.x + 0.7*plane.image.get_width() &gt; enemy.x) and (plane.x + 0.3*plane.image.get_width() &lt; enemy.x + enemy.image.get_width()) and \
+        (plane.y + 0.7*plane.image.get_height() &gt; enemy.y) and (plane.y + 0.3*plane.image.get_height() &lt; enemy.y + enemy.image.get_height()):
+        return True
+    return False
+
+pygame.init()
+screen = pygame.display.set_mode((450,700), 0, 32) #制作窗口
+pygame.display.set_caption(&apos;fight plane&apos;) #窗口名称
+background = pygame.image.load(&apos;background.jpg&apos;).convert() #加载背景图
+plane = Plane() #创建飞机对象
+enemies = [] #创建敌机list
+for i in range(5):
+    enemies.append(Enemy())
+bullets = [] #创建子弹list
+for i in range(5): #list中添加5发子弹
+    bullets.append(Bullet())
+count_b = len(bullets) #子弹总数
+index_b = 0 #即将激活的子弹序号
+interval_b = 0 #发射子弹间隔
+gameover = False
+score = 0
+font = pygame.font.Font(None,32) #创建一个font对象,None为默认字体，32为字号
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+        if gameover and event.type == pygame.MOUSEBUTTONUP: #点击鼠标游戏重置
+            plane.restart()
+            for e in enemies :
+                e.restart()
+            for b in bullets :
+                b.active = False
+            score = 0
+            gameover = False
+            index_b = 0
+            interval_b = 0
+    screen.blit(background,(0,0)) #画背景图像，从最左上角开始即（0,0）
+
+    if not gameover :
+        interval_b -= 1 #发射间隔递减，实际发射间隔受cpu影响
+        if interval_b &lt; 0: #间隔小于0时,激发一个子弹
+            bullets[index_b].restart()
+            interval_b = 100 #重置时间间隔
+            index_b = (index_b + 1) %count_b #子弹序号周期性递减
+        for b in bullets: #绘制激活的子弹
+            if b.active:
+                b.move()
+                screen.blit(b.image,(b.x,b.y))
+                for e in enemies:
+                    if checkHit(e, b) :#检测激活的子弹是否和飞机相撞
+                        score += 10
+        for e in enemies : #敌机的移动和描述        
+            if checkCrash(e, plane) :
+                gameover = True
+            e.move() 
+            screen.blit(e.image,(e.x, e.y))
+        plane.move()
+        screen.blit(plane.image,(plane.x,plane.y)) #画飞机
+        text = font.render(&quot;Score:%d&quot; %score,1,(0,0,0))
+        screen.blit(text,(0,0)) #在屏幕左上角显示分数
+    else :
+        text1 = font.render(&quot;Score:%d&quot; %score,1,(0,0,0))
+        text2 = font.render(&quot;click restart&quot;,1,(0,0,0))
+        screen.blit(text1,(190,400)) #在屏幕中间显示分数
+        screen.blit(text2,(170,420))
+    pygame.display.update()    #刷新
+</code></pre>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2017/10/03/打飞机小游戏 python+pygame/">https://kiudou.github.io/2017/10/03/打飞机小游戏 python+pygame/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Python/">Python</a>
+            
+              <a href="/tags/Pygame/">Pygame</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/10/04/ValueError need more than 1 value to unpack/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">ValueError need more than 1 value to unpack</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/09/20/ubuntu开机出现waiting for network configuration/">
+        <span class="next-text nav-default">ubuntu开机出现waiting for network configuration</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

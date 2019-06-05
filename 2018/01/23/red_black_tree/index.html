@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="红黑树">
+
+
+
+
+  <meta name="keywords" content="数据结构, 树, 链表, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/01/23/red_black_tree/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 红黑树 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          红黑树
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-23
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/01/23/red_black_tree/" data-title="红黑树">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#红黑树"><span class="toc-text">红黑树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#旋转"><span class="toc-text">旋转</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插入"><span class="toc-text">插入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除"><span class="toc-text">删除</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><p>定义：是平衡搜索树的一种，可以保证最坏情况下基本动态集合操作的时间复杂度为O(lgn)</p>
+<a id="more"></a>
+<p>性质：</p>
+<p>1.每个结点是红色的，或是黑色的</p>
+<p>2.根结点是黑色的</p>
+<p>3.每个叶结点是黑色的</p>
+<p>4.如果一个结点是红色的，则他的两个子结点都是黑色的</p>
+<p>5.对每个结点，从该结点到其所有后代页结点的简单路径上，均包含数目相同的黑色节点</p>
+<hr>
+<p>黑高：从某个结点x出发(不包含该结点)到达一个叶结点的任意一条简单路径上的黑色结点个数</p>
+<hr>
+<h1 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h1><p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/26LvUmZCcAEXwbh04lnWhM.mwxGnsEaXSzjhip6KmQw!/b/dPIAAAAAAAAA&amp;bo=AQKCAAAAAAARB7E!&amp;rf=viewer_4" alt=""></p>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/Jh5JYQT.0ADeh.onlSjOKzJwltG1VVYNxqke4u9OQe8!/b/dAgBAAAAAAAA&amp;bo=3AIAAgAAAAARB.w!&amp;rf=viewer_4" alt=""></p>
+<pre><code>typedef struct node {
+    node *left;
+    int key;
+    node *right 
+    node *parent;
+    char color[21]
+} *NODE;
+
+void left_rotate(NODE T, NODE x) { //左旋转
+    NODE y = x-&gt;right;
+    x-&gt;right = y-&gt;left; 
+    if(y-&gt;left != NULL) { 
+        y-&gt;left-&gt;parent = x;
+    }
+    y-&gt;parent = x-&gt;parent;
+    if(y-&gt;parent == NULL) { //判断x是否为根节点
+        T = y;
+    }
+    else if(x-&gt;parent-&gt;right == x) { 
+        x-&gt;parent-&gt;right = y;
+    }
+    else {
+        x-&gt;parent-&gt;left = y;
+    }
+    x-&gt;parent = y;
+    y-&gt;left = x;
+}
+
+
+void right_rotate(NODE T, NODE x) { //右旋转
+    NODE y = x-&gt;left;
+    x-&gt;left = y-&gt;right; 
+    if(y-&gt;right != NULL) { 
+        y-&gt;right-&gt;parent = x;
+    }
+    y-&gt;parent = x-&gt;parent;
+    if(y-&gt;parent == NULL) { //判断x是否为根节点
+        T = y;
+    }
+    else if(x-&gt;parent-&gt;right == x) { 
+        x-&gt;parent-&gt;right = y;
+    }
+    else {
+        x-&gt;parent-&gt;left = y;
+    }
+    x-&gt;parent = y;
+    y-&gt;right = x;
+}
+</code></pre><hr>
+<h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/iu.KhkAm05v4gY1p9ctS7EX3HNonNkY.Q4gGGBXnDl0!/b/dGcBAAAAAAAA&amp;bo=7QLyAu0C8gIRGS4!&amp;rf=viewer_4" alt=""></p>
+<pre><code>typedef struct node {
+    node *left;
+    int key;
+    node *right 
+    node *parent;
+    char color[21]
+} *NODE;
+
+void RB_insert_fixup(T, z) {
+    while(strcmp(z-&gt;parent-&gt;color,RED) == 0) { //判断z的父亲结点是否等于RED，因为z为RED，所以若z的父亲结点为RED，则不符合红黑树的性质
+        if(z-&gt;parent-&gt;parent-&gt;left == z-&gt;parent) { // 左孙子
+
+            NODE y = z-&gt;parent-&gt;parent-&gt;right; //z的叔
+            if(y-&gt;color == RED) { //z的叔为红色
+                z-&gt;parent-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                z-&gt;parent-&gt;parent-&gt;color = RED;
+                z = z-&gt;parent-&gt;parent;
+            }else if(z-&gt;parent-&gt;right == z){ //z的叔为黑色，且z是右孩子，将z旋转成左孩子
+                z = z-&gt;parent;
+                left_rotate(T, z);
+            }
+            z-&gt;parent-&gt;color = BLACK;
+            z-&gt;parent-&gt;parent-&gt;color = RED;
+            right_rotate(T, z-&gt;parent-&gt;parent);
+
+        }else { //右孙子
+
+            NODE y = z-&gt;parent-&gt;parent-&gt;left;
+            if(y-&gt;color == RED) {
+                z-&gt;parent-&gt;color = BLACK;
+                y-&gt;color = BLACK;
+                z-&gt;parent-&gt;parent-&gt;color = RED;
+                z = z-&gt;parent-&gt;parent;
+            }else if(z-&gt;parent-&gt;left == z){
+                z = z-&gt;parent;
+                right_rotate(T, z);
+            }
+            z-&gt;parent-&gt;color = BLACK;
+            z-&gt;parent-&gt;parent-&gt;color = RED;
+            left_rotate(T, z-&gt;parent-&gt;parent);
+
+        }
+    }
+    T-&gt;color = BLACK;
+}
+
+RB_insert(NODE T, NODE z) {
+    NODE x = T, y = NULL;
+    while(x != NULL) {
+        y = x;
+        if(z-&gt;key &lt; x-&gt;key) {
+            x = x-&gt;left;
+        }else {
+            x = x-&gt;right;
+        }
+    }
+    z-&gt;parent = y;
+    if(y == NULL) {
+        T = z;
+    }else if(z-&gt;key &lt; y-&gt;key) {
+        y-&gt;left = z;
+    }else {
+        y-&gt;right = z;
+    }
+    z-&gt;color = RED;
+    RB_insert_fixup(T, z);
+}
+</code></pre><h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><p>在删除后的调整中，针对删除黑色节点，所在子树缺少一个节点，需要进行弥补或者对别人造成一个黑色节点的伤害。具体调整方法取决于兄弟节点所在子树的情况。</p>
+<p>红黑树的插入、删除在树形数据结构中算比较复杂的，理解起来比较难，但只要记住，红黑树有其特殊的平衡规则，而我们为了维持平衡，根据邻树的状况进行旋转或者涂色。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/01/23/red_black_tree/">https://kiudou.github.io/2018/01/23/red_black_tree/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/数据结构/">数据结构</a>
+            
+              <a href="/tags/树/">树</a>
+            
+              <a href="/tags/链表/">链表</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/25/B_tree/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">B树</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/23/binary_search_tree/">
+        <span class="next-text nav-default">二叉搜索树</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

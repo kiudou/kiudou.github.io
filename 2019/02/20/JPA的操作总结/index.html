@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="JPA的操作总结">
+
+
+
+
+  <meta name="keywords" content="JPA, Java, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2019/02/20/JPA的操作总结/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> JPA的操作总结 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JPA的操作总结
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-02-20
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2019/02/20/JPA的操作总结/" data-title="JPA的操作总结">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#开启JPA的使用"><span class="toc-text">开启JPA的使用</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>JPA全称是Java Persistence Api,作用类似于MyBatis，是ORM（对象关系映射）。</p>
+<a id="more"></a>
+<p><strong>JPA的查询语言是面向对象的，而不是面向数据库的</strong></p>
+<h1 id="开启JPA的使用"><a href="#开启JPA的使用" class="headerlink" title="开启JPA的使用"></a>开启JPA的使用</h1><p>首先，要想在Java中使用JPA，则先在maven中引入JPA的依赖</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre><p>然后，实体类跟数据库对应,Patient为实体类。@Table注解中的patient为数据库表，表示Patient类与数据库表patient对应。@Column中的字段为patient表中字段，和类中的字段一一对应。</p>
+<pre><code>@Entity
+@Table(name = &quot;patient&quot;)
+public class Patient {
+    @Id
+    private Integer patientId;
+    @Column(name = &quot;document_type&quot;)
+    private String documentType;
+    @Column(name = &quot;document_number&quot;)
+    private Integer documentNumber;
+    @Column(name = &quot;english_surname&quot;)
+    private String englishSurname;
+    public Patient(String documentType) {
+    this.documentType = documentType;
+}
+</code></pre><p> 最后，写JPA查询语句，首先得建一个类，该类继承JpaRepository&lt;ClassName,Type&gt;接口，该接口的第一个参数为实体类，第二个参数为实体类的@Id修饰的字段类型。然后就能在该类中，写查询语句了。</p>
+<p> JPA有自己的一套查询语句：通过解析方法名来解析查询语句，一般的格式为findBy字段名，如果限定条件有多个字段，则为findBy字段名And字段名。还能在service层进行默认查询，比如save(),findAll()方法</p>
+<pre><code> public interface PatientRepository extends JpaRepository&lt;Patient,Integer&gt; {
+
+    /**
+     * jpa自己的一套查询方法
+     */
+    List&lt;Patient&gt; findByPatientId(Integer num); 
+    List&lt;Patient&gt; findByPatientIdAndMobilePhone(Integer num, String str); 
+    List&lt;Patient&gt; findByMobilePhone(Integer num);
+    List&lt;Patient&gt; findByEnglishSurname(String str);
+
+
+
+    /**
+     * 如果要自己书写查询语句，则需要加上@Modifying和@Query(),@Query里书写语句 
+     * 如果为更新语句，一般加上事务，即@Transactional注解
+     */
+    @Transactional(rollbackFor = Exception.class) 
+    @Modifying
+    @Query(&quot;update Patient p set p.documentType = ?2, p.documentNumber = ?3, p.englishSurname = ?4 where p.patientId = ?1&quot;)
+    int updateById(Integer patientId, String documentType, Integer documentNumber, String englishSurname);
+
+    /**
+     * 该为自己手写 select， 如果查询出返回的结果只是documentType，则在实体类中
+     * 一定要添加该字段的构造函数
+     */       
+    @Query(&quot;select new com.harmonycloud.entity.Patient(p.documentType) from Patient p where p. patientId = ?1&quot;)
+    List&lt;String&gt; findByPatientId(Integer patientId);
+
+    /**
+     * 模糊查询 在模糊查询的字段后面加上Containing。建议使用Containing，
+     * 不要使用like
+     */
+    // 对appointmentDate进行模糊查询
+    List&lt;Appointment&gt; findByAppointmentDateContaining(String appointmentDate);
+
+    //对roomId进行精确查询，对appointmentDate进行模糊查询
+    List&lt;Appointment&gt; findByRoomIdAndAppointmentDateContaining(Integer roomId, String appointmentDate);
+
+
+    /**
+     * 在网上找到模糊查询的方法都是如下这种，但是这种在我这都不行，我也找不出原因，
+     * 所有我就使用了Containing关键字方法，要是like使用不了，建议使用Containing
+     */
+    @Query(&quot;select new com.harmonycloud.entity.Appointment(a.appointmentId, a.patientId, a.clinicId, a.encounterTypeId,&quot; +
+        &quot;a.roomId, a.appointmentDate, a.status, a.attendanceStatus, a.attendanceTime) from Appointment a where appointmentDate = &apos;?1%&apos;&quot;)
+List&lt;Appointment&gt; findByAppointmentDateContaining(String appointmentDate);
+
+}
+</code></pre>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2019/02/20/JPA的操作总结/">https://kiudou.github.io/2019/02/20/JPA的操作总结/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/JPA/">JPA</a>
+            
+              <a href="/tags/Java/">Java</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/06/02/tomcat/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">tomcat</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/01/25/oracle数据库操作及遇到的一些问题/">
+        <span class="next-text nav-default">oracle数据库操作及遇到的一些问题</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

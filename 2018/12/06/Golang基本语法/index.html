@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Golang基本语法">
+
+
+
+
+  <meta name="keywords" content="Golang, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/12/06/Golang基本语法/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> Golang基本语法 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Golang基本语法
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-12-06
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/12/06/Golang基本语法/" data-title="Golang基本语法">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Golang"><span class="toc-text">Golang</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量定义"><span class="toc-text">变量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件语句if"><span class="toc-text">条件语句if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环语句for"><span class="toc-text">循环语句for</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指针"><span class="toc-text">指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map"><span class="toc-text">Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切片splice"><span class="toc-text">切片splice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构体"><span class="toc-text">结构体</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h1 id="Golang"><a href="#Golang" class="headerlink" title="Golang"></a>Golang</h1><a id="more"></a>
+<h2 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h2><ol>
+<li><p>变量类型写在变量名之后</p>
+</li>
+<li><p>编译器可推测变量类型</p>
+</li>
+<li><p>没有char ,只有rune</p>
+</li>
+<li><p>原生支持复数类型</p>
+</li>
+</ol>
+<p>`</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;math&quot;
+)
+
+var ( //在外部定义是包内变量，并不是全局变量,所有函数都能用。在外部不能用:来初始化值
+    aa = 12
+    bb = &quot;xc&quot;
+)
+
+var cc = true //变量可都放在var的括号内
+
+func variableZeroValue() { //初始化会赋初值
+    var a int
+    var s string
+    fmt.Println(a,s) //0
+    fmt.Printf(&quot;%d %s\n&quot;,a, s) //0
+    fmt.Printf(&quot;%d %q\n&quot;, a, s) //0 &quot;&quot;
+
+
+}
+
+func variableInitialValue() {
+    var a, b int = 3, 4 //多个数赋初值
+    var s string = &quot;abc&quot;
+    fmt.Println(a, b, s) //3 4 abc
+}
+
+func variableTypeDeduction() {
+    var a, b, c, s = 3, 4, true, &quot;abd&quot; //能自动判断类型，从而进行赋值
+    fmt.Println(a, b, c, s) //3 4 true abd
+}
+
+func variableShorter() {
+    a, b, c, s := 3, 4, true, &quot;asdf&quot; //:和功能上面一样的，初始化时候有用
+    fmt.Println(a, b, c, s) //3 4 true asdf
+}
+
+func triangle() { //类型需要强制转换，不能隐式转换
+    var a, b int = 3, 4
+    var c int
+    c = int(math.Sqrt(float64(a*a+b*b)))
+    fmt.Println(c) //5
+}
+
+func consts() { //常量，可作为任何数值使用，不用强制转换，必须赋值
+    const filename = &quot;name.vs&quot;
+    const a, b = 3, 4
+    var c int
+    c = int(math.Sqrt(a*a+b*b))
+    fmt.Println(c) //5
+}
+
+func enums() { //枚举类型，可用const定义，iota是自增
+    const(
+        java = iota
+        python
+        golang
+        javascript
+    )
+    fmt.Println(java, python, golang, javascript) //0 1 2 3
+
+    const(
+        k = 1 &lt;&lt; (10*iota)
+        kb
+        mb
+        gb
+    )
+
+    fmt.Println(k, kb,mb, gb) //1 1024 1048576 1073741824
+}
+
+func main() {
+    fmt.Println(&quot;hello world&quot;) //hello world
+    variableZeroValue()
+    variableInitialValue()
+    variableTypeDeduction()
+    variableShorter()
+    fmt.Println(aa,bb,cc) //12 xc true
+    triangle()
+    consts()
+    enums()
+}
+</code></pre><p>`</p>
+<h2 id="条件语句if"><a href="#条件语句if" class="headerlink" title="条件语句if"></a>条件语句if</h2><ol>
+<li>if和else if后面没有括号</li>
+</ol>
+<p>`</p>
+<pre><code>package main
+
+import (
+    &quot;io/ioutil&quot;
+    &quot;fmt&quot;
+)
+
+func main() {
+    const filename  = &quot;a.txt&quot;
+    content, err := ioutil.ReadFile(filename)
+    if err != nil {
+        fmt.Println(err)
+    } else {
+        fmt.Printf(&quot;%s\n&quot;,content)
+    }
+    //上下两个是等价的，if条件里可以赋值，下面这个con和error的变量作用域在if里
+    if con, error := ioutil.ReadFile(filename);err != nil {
+        fmt.Println(error)
+    } else {
+        fmt.Printf(&quot;%s\n&quot;,con)
+    }
+
+}
+</code></pre><p>`    </p>
+<h2 id="循环语句for"><a href="#循环语句for" class="headerlink" title="循环语句for"></a>循环语句for</h2><ol>
+<li>for后面条件没有括号</li>
+</ol>
+<p>`    </p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;strconv&quot;
+    &quot;os&quot;
+    &quot;bufio&quot;
+)
+
+func convertToBin(n int) string {
+    result := &quot;&quot;
+    for ; n &gt; 0; n /= 2 { //可以省略初始条件
+        lsb := n%2
+        result = strconv.Itoa(lsb) + result;
+    }
+    return result
+}
+
+func printFile(filename string) {
+    file, err := os.Open(filename)
+    if err != nil {
+        panic(err)     //报错处理
+    }
+
+    scanner := bufio.NewScanner(file)
+
+    for scanner.Scan() {//可以省略初始条件和递增条件
+        fmt.Println(scanner.Text())
+    }
+}
+
+func forever()  {
+    for { //死循环
+        fmt.Println(&quot;ads&quot;)
+    }
+}
+
+func main() {
+    const filename  = &quot;a.txt&quot;
+
+    fmt.Println(
+        convertToBin(13), //1101
+
+    )
+
+    printFile(&quot;a.txt&quot;)
+
+    forever()
+}
+</code></pre><p>`</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li><p>返回值类型写在最后面</p>
+</li>
+<li><p>可返回多个值</p>
+</li>
+<li><p>函数作为参数</p>
+</li>
+<li><p>没有默认参数,可选参数</p>
+</li>
+</ol>
+<p>`    </p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;math&quot;
+)
+
+func div(a, b int) (int, int) { //能返回多个参数，相同类型的参数，可公用一个类型
+    return a/b, a%b
+}
+
+func apply(op func(int, int) int, a, b int) int { //参数为匿名函数
+    return op(a, b)
+}
+
+func sum(numbers ...int) int { //可变参数列表
+    s := 0
+    for i := range numbers {
+        s += numbers[i]
+    }
+    return s
+}
+
+func main() {
+    fmt.Println(
+        div(13,4),    //3 1
+    )
+
+    fmt.Println(
+        apply(func(a int, b int) int {
+            return int(math.Pow(float64(a),float64(b)))
+        },3,4),
+    ) //81
+
+    fmt.Println(sum(1,2,3,4,5,6,7,8,9,10)) //55
+}
+</code></pre><p>`</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><ol>
+<li>指针不能运算</li>
+</ol>
+<p>`</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func swap1(a, b *int) {
+    *a,*b = *b,*a
+}
+
+func swap2(a, b int)(int, int)  {
+    return b, a
+}
+
+func main() {
+    a, b, c, d:= 1, 2, 1,2
+    swap1(&amp;a, &amp;b)
+    fmt.Println(a, b) //2 1
+    fmt.Println(swap2(c, d)) //2 1
+}
+</code></pre><p>`</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ol>
+<li><p>[10]int和[20]int是不同类型</p>
+</li>
+<li><p>调用func f(arr [10]int)会拷贝数组</p>
+</li>
+<li><p>在go语言中一般不直接使用数组,使用切片</p>
+</li>
+</ol>
+<p>`</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func printArray(arr [5]int) {
+    for i := 0; i &lt; len(arr); i++ {
+        fmt.Println(arr[i])
+    }
+
+    for i := range arr {
+        fmt.Println(arr[i])
+    }
+
+    for i, v := range arr { //索引和值
+        fmt.Println(i, v)
+    }
+}
+
+func main() {
+    var arr1 [5]int
+    arr2 := [3]int{1,2,3}
+    arr3 := [...]int{1,2,3,4,5}
+    var grid [2][3]int
+
+    fmt.Println(arr1,arr2,arr3,grid)
+    //[0 0 0 0 0] [1 2 3] [1 2 3 4 5] [[0 0 0] [0 0 0]]
+
+    printArray(arr1)
+    printArray(arr3)
+}
+</code></pre><p>`</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><ol>
+<li>使用range遍历key ,或者遍历key, value对</li>
+<li>不保证遍历顺序,如需顺序,需手动对key排序</li>
+<li>使用len获得元素个数</li>
+<li>map使用哈希表,必须可以比较相等</li>
+<li>除了slice, map, function的内建类型都可以作为key</li>
+<li>Struct类型不包含上述字段,也可作为key</li>
+</ol>
+<p>`</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    m1 := map[string]string {
+        &quot;qwe&quot;:&quot;qe&quot;,
+        &quot;qq&quot;: &quot;ww&quot;,
+    }
+
+    m2 := make(map[string]int) //m2 == empty map
+
+    var m3 map[string]int //m3 == nill
+
+    fmt.Println(m1,m2,m3) //map[qwe:qe qq:ww] map[] map[]
+
+    for k, v := range m1 {
+        fmt.Println(k,v)
+    }
+    //qwe qe
+    //qq ww
+
+    qwName, ok := m1[&quot;qwe&quot;] //有值ok为true，反之为false
+    fmt.Println(qwName, ok) //qe true
+    if ok {
+        fmt.Println(qwName) //qe
+        fmt.Println(m1[&quot;asa&quot;]) //空
+    }
+
+    delete(m1, &quot;qwe&quot;) //删除key为&quot;qwe&quot;的键值对
+    fmt.Println(m1) //map[qq:ww]
+}
+</code></pre><p>`</p>
+<h2 id="切片splice"><a href="#切片splice" class="headerlink" title="切片splice"></a>切片splice</h2><ol>
+<li><p>添加元素时如果超越cap ,系统会重新分配更大的底层数组</p>
+</li>
+<li><p>由于值传递的关系,必须接收append的返回值</p>
+</li>
+<li><p>S = append(S, val)</p>
+</li>
+</ol>
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/h8909zqrqmWSmBKUfSY0gUITeeZWiY9Rvj*M32wAYhs!/b/dFUAAAAAAAAA&amp;bo=ugTwAboE8AEDCSw!&amp;rf=viewer_4" alt="image"></p>
+<p>`</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func printSlice(s []int) {
+    fmt.Printf(&quot;slice=%v len=%d cap=%d\n&quot;, s, len(s), cap(s))
+}
+
+func main() {
+    arr := [...]int{0,1,2,3,4,5,6,7}
+    s1 := arr[2:6]
+    fmt.Println(s1) //[2 3 4 5]  左闭右开
+
+    s2 := s1[3:5]
+    fmt.Println(s2) //[5 6] 出现了s1中没有出现的值，因为有cap的缘故
+
+    s3 := s1[:3]
+    s1[0] = 100
+    fmt.Println(arr) //[0 1 100 3 4 5 6 7]     slice中改变会导致原数组中的值改变
+    fmt.Println(s1) //[100 3 4 5]
+    fmt.Println(s3) //[100 3 4]
+
+    s4 := append(s1,10)
+    fmt.Println(s4) //[100 3 4 5 10]
+    s5 := append(s4, 11)
+    fmt.Println(s5) //[100 3 4 5 10 11]
+    s6 := append(s5, 12)
+    fmt.Println(s6) //[100 3 4 5 10 11 12]
+    s7 := append(s6,20)
+    fmt.Println(s7) //[100 3 4 5 10 11 12 20]
+    fmt.Println(s1) //[100 3 4 5]
+
+
+    //slice的创建方式
+    var s []int
+    for i := 0; i &lt; 100 ; i++ {
+        s = append(s, i)
+    }
+    fmt.Println(s) //[1,2,3,4.......99]
+
+    a1 := []int{2,3,4,5}
+    printSlice(a1) //slice=[2 3 4 5] len=4 cap=4
+
+    a2 := make([]int, 16)
+    printSlice(a2) //slice=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] len=16 cap=16
+    a3 := make([]int, 16, 31)
+    printSlice(a3) //slice=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] len=16 cap=31
+
+    copy(a2, a1)//拷贝
+    printSlice(a2) //slice=[2 3 4 5 0 0 0 0 0 0 0 0 0 0 0 0] len=16 cap=16
+
+    a2 = append(a2[:2],a2[3:]...) //删除其中某一个元素
+    printSlice(a2) //slice=[2 3 5 0 0 0 0 0 0 0 0 0 0 0 0] len=15 cap=16
+
+    //删去头部元素 ，因为是头部元素，pre指针只会往后移动，不会往前，所以，cap会少1，如果是尾部元素，cap不变
+    a2 = a2[1:]
+    printSlice(a2) //slice=[3 5 0 0 0 0 0 0 0 0 0 0 0 0] len=14 cap=15
+
+    a2 = a2[:len(a2)-1] //删去尾部元素
+    printSlice(a2) //slice=[3 5 0 0 0 0 0 0 0 0 0 0 0] len=13 cap=15
+}
+</code></pre><p>`</p>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><ol>
+<li>首字母大写是public，能被外部访问</li>
+<li>首字母小写是private，不能被外部访问</li>
+<li>命名一般都是CamelCase</li>
+</ol>
+<p>`</p>
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+)
+
+type treeNode struct {
+    value int
+    left, right *treeNode
+}
+
+//---------
+//这两个写法是一样的，(node treeNode)放在前面是将root作为接收者
+func (node treeNode) print() { //为结构体定义的方法
+    fmt.Println(node.value)
+}
+func print1(node treeNode) {
+    fmt.Println(node.value)
+}
+//-----------
+
+//因为go语言都是值传递，所以要改变值，得用引用传递
+//只有指针才可以改变结构内容
+func (node *treeNode) setValue(value int) {//为结构体定义的方法
+    node.value = value
+}
+
+
+//使用了自定义工厂函数，注意返回了局部变量的地址，go中不算错
+func createTreeNode(value int) *treeNode  {
+    return &amp;treeNode{value: value}
+}
+
+func main() {
+    var root treeNode
+
+    root = treeNode{value: 3}
+    root.left = &amp;treeNode{} //因为left是个指针，所以得取地址
+    root.right = &amp;treeNode{4, nil, nil}
+    root.left.right = new(treeNode)
+    root.right.left = createTreeNode(5)
+
+    root.right.left.print() //5
+    root.right.left.setValue(9)
+    root.right.left.print() //9
+
+    nodes := []treeNode {
+        {value:3},
+        {},
+        {6,nil,&amp;root},
+    }
+    fmt.Println(nodes) //[{3 &lt;nil&gt; &lt;nil&gt;} {0 &lt;nil&gt; &lt;nil&gt;} {6 &lt;nil&gt; 0xc00000a080}]
+
+}
+</code></pre><p>`</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/12/06/Golang基本语法/">https://kiudou.github.io/2018/12/06/Golang基本语法/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Golang/">Golang</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/12/09/迷宫的Go版代码-广度优先搜索/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">迷宫的Go版代码(广度优先搜索)</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/12/05/win10安装wget/">
+        <span class="next-text nav-default">win10安装wget</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

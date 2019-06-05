@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="tomcat">
+
+
+
+
+  <meta name="keywords" content="Java, Tomcat, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2019/06/02/tomcat/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> tomcat - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          tomcat
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-02
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2019/06/02/tomcat/" data-title="tomcat">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#tomcat的配置"><span class="toc-text">tomcat的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#端口修改"><span class="toc-text">端口修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#内存信息修改"><span class="toc-text">内存信息修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#热部署：不重启tomcat的情况下，将应用部署到tomcat中"><span class="toc-text">热部署：不重启tomcat的情况下，将应用部署到tomcat中</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>Tomcat是Apache软件基金会属下Jakarta项目开发的Servlet容器，提供了作为Web服务器的一些特有功能。由于Tomcat本身也内含了HTTP服务器，因此也可以视作单独的Web服务器。但是，不能将Tomcat和Apache HTTP服务器混淆，Apache HTTP服务器是用C语言实现的HTTPWeb服务器。</p>
+<a id="more"></a>
+<hr>
+
+
+
+<p>###tomcat原理图</p>
+<p>首先看一下tomcat内部原理图</p>
+<p><img src="http://r.photo.store.qq.com/psb?/V13zmFZT2vlTI6/1Ij0Hj0lkvlGdpmEkezJHrRgYL21XwpNIgDd*KufbvM!/r/dL8AAAAAAAAA" alt="tomcat原理图"></p>
+<p>在图中显示connector和container是核心组件，接下来说明一下这辆组件的核心作用</p>
+<ul>
+<li>connector组件的作用</li>
+</ul>
+<ol>
+<li>接收客户端的连接</li>
+<li>加工处理客户端请求</li>
+</ol>
+<ul>
+<li>container组件的作用</li>
+</ul>
+<ol>
+<li><p>处理请求的容器</p>
+</li>
+<li><p><a href="https://www.cnblogs.com/java-my-life/archive/2012/05/28/2516865.html" target="_blank" rel="noopener">责任链设计模式</a></p>
+</li>
+<li><p>Contain下容器从大到小分别为Engine,Host,Context,Wrapper,从左到右容器的关系是一对多的关系</p>
+</li>
+</ol>
+<hr>
+
+
+
+
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/J*amUakrrCRi2.*bfSTI7d*jTzhynWbjYkzxMpHC.h0!/b/dLYAAAAAAAAA&amp;bo=SgRuA0oEbgMDCSw!&amp;rf=viewer_4" alt="tomcat处理http流程图"></p>
+<p>上图为tomcat处理http的请求流程图，下面解析一下处理的过程</p>
+<ol>
+<li><p>客户端发送请求，然后被端口为8080，协议是HTTP/1.1的coyote的连接器监听到</p>
+</li>
+<li><p>connector将请求发送到下属的container处理，并且等待回应</p>
+</li>
+<li><p>container根据请求的域名，匹配对应的host，然后将请求交给对应的host处理</p>
+</li>
+<li><p>context根据请求的path路径，寻找到对应的工程，然后将请求交给context</p>
+</li>
+<li><p>context中根据请求找到相应的servlet类，交由其处理</p>
+</li>
+<li><p>构造HttpServletRequest对象和HttpServletResponse对象，作为参数调用相应的servlet类的doGet和doPost方法</p>
+</li>
+<li><p>context把执行完之后的HttpServletResponse对象返回给host</p>
+</li>
+<li><p>host把HttpServletResponse对象返回给engine</p>
+</li>
+<li><p>engine把HttpServletResponse对象返回给connector</p>
+</li>
+<li><p>HttpServletResponse对象返回给客户端</p>
+</li>
+</ol>
+<hr>
+
+<p><img src="http://m.qpic.cn/psb?/V13zmFZT2vlTI6/JDOoOZkZK6y1xFwkw9mvxKx5OYwdMpQYp1zp3XfmSb8!/b/dIMAAAAAAAAA&bo=mAEoApgBKAIDCSw!&rf=viewer_4" height="300"></p>
+<p>上图为tomcat内部文件图,我们来解析一下这些文件夹的用处：</p>
+<ul>
+<li>bin：tomcat下的各种命令</li>
+<li>conf：各种配置文件，典型的有server.xml，是tomcat的体系结构，在tomcat启动时构建tomcat容器</li>
+<li>lib：tomcat和工程需要的jar包</li>
+<li>logs：存放tomcat运行时的各种日志文件，比图catalina文件里时控制台输出的信息</li>
+<li>temp：用户运行tomcat时产生的临时文件，删去无影响</li>
+<li>webapps：存放工程文件，在该文件夹下的ROOT文件夹存放的是各种静态文件，可以ip+端口/文件名称直接访问</li>
+<li>work：tomcat运行时编译后的文件</li>
+</ul>
+<hr>
+
+<h3 id="tomcat的配置"><a href="#tomcat的配置" class="headerlink" title="tomcat的配置"></a>tomcat的配置</h3><h5 id="端口修改"><a href="#端口修改" class="headerlink" title="端口修改"></a>端口修改</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 端口号的修改，配置文件是在tomcat下的conf/server.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 用于关闭tomcat时需要用到的端口 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Server</span> <span class="attr">port</span>=<span class="string">"8005"</span> <span class="attr">shutdown</span>=<span class="string">"SHUTDOWN"</span>&gt;</span> </span><br><span class="line">  </span><br><span class="line"><span class="comment">&lt;!-- 使用http协议请求使用的端口， --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">&lt;!-- 使用AJP协议请求使用的端口 --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8009"</span> <span class="attr">protocol</span>=<span class="string">"AJP/1.3"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="内存信息修改"><a href="#内存信息修改" class="headerlink" title="内存信息修改"></a>内存信息修改</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#内存信息可以配置在tomcat下的bin/catalina.sh中，写在第二行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -server可以在多个cpu下性能得到更好的发挥</span></span><br><span class="line"><span class="comment"># -Xms256m java heap的初始大小，一般为物理内存的1/64</span></span><br><span class="line"><span class="comment"># -Xmx512m java heap的最大值，不要超过物理内存</span></span><br><span class="line"><span class="comment"># -XX:MetaspaceSize=128m 初始元空间大小，默认为21m</span></span><br><span class="line"><span class="comment"># -XX:MaxMetaspaceSize=256m 最大的元空间大小</span></span><br><span class="line">JAVA_OPTS=<span class="string">"-server -Xms256m -Xmx512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m"</span></span><br></pre></td></tr></table></figure>
+<h5 id="热部署：不重启tomcat的情况下，将应用部署到tomcat中"><a href="#热部署：不重启tomcat的情况下，将应用部署到tomcat中" class="headerlink" title="热部署：不重启tomcat的情况下，将应用部署到tomcat中"></a>热部署：不重启tomcat的情况下，将应用部署到tomcat中</h5><ol>
+<li>直接将war包放入webapps中，就能直接访问</li>
+<li></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 在tomcat下的conf/server.xml下，在&lt;Host&gt;&lt;/Host&gt;代码块中加入 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- debug="0" 是调制信息，数字越大，输出越详细 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- docBase="user" 可以放绝对路径，表示应用的路径，如果放相对路径表示在webapps下的user应用 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- path="/" 表示域名后面跟的路径 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- reloadable="true" 加载新增或改变的class文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span>  <span class="attr">docBase</span>=<span class="string">"user"</span> <span class="attr">path</span>=<span class="string">"/"</span> <span class="attr">debug</span>=<span class="string">"0"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2019/06/02/tomcat/">https://kiudou.github.io/2019/06/02/tomcat/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Java/">Java</a>
+            
+              <a href="/tags/Tomcat/">Tomcat</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/02/20/JPA的操作总结/">
+        <span class="next-text nav-default">JPA的操作总结</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>

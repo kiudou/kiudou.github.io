@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="链表的基本操作和题">
+
+
+
+
+  <meta name="keywords" content="数据结构, 链表, Thinking And Creating">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Thinking And Creating">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.1">
+
+
+
+<link rel="canonical" href="https://kiudou.github.io/2018/01/31/list/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.1">
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz",
+      appKey: "x8jnxpbquaxAvzwtdRL4eDwV"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz","app_key":"x8jnxpbquaxAvzwtdRL4eDwV"},"toc":true,"fancybox":true,"pjax":true};
+</script>
+
+    <title> 链表的基本操作和题 - Thinking And Creating </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Thinking And Creating</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Thinking And Creating</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          链表的基本操作和题
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-31
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/01/31/list/" data-title="链表的基本操作和题">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#链表节点的插入和删除"><span class="toc-text">链表节点的插入和删除</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#从尾到头打印链表"><span class="toc-text">从尾到头打印链表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在O-1-时间内删除链表节点"><span class="toc-text">在O(1)时间内删除链表节点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除重复的节点"><span class="toc-text">删除重复的节点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#链表中倒数第k个节点"><span class="toc-text">链表中倒数第k个节点</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h1 id="链表节点的插入和删除"><a href="#链表节点的插入和删除" class="headerlink" title="链表节点的插入和删除"></a>链表节点的插入和删除</h1><a id="more"></a>
+<pre><code>struct Node {
+    int value;
+    Node* next;
+};
+
+//末尾插入节点
+void AddToTail(Node** head, int value) { //head是一个指向指针的指针
+    Node *Node_new = new Node();
+    Node_new-&gt;value = value;
+    Node_new-&gt;next = nullptr;
+
+    if(*head == nullptr) {
+        *head = Node_new;
+    }
+    Node *Node_temp = *head;
+
+    while(Node_temp-&gt;next != nullptr) {
+        Node_temp = Node_temp-&gt;next;
+    }
+    Node_temp-&gt;next = Node_new;
+}
+
+void RemoveNode(Node** head, int value) { //删除节点
+    if(*head == nullptr || head == nullptr)
+        return ;
+    Node* Node_delete = nullptr;
+    if(*head-&gt;value = value) {
+        Node_delete = *head;
+        *head = (*head)-&gt;next;
+    }
+    else {
+        Node* Node_temp = *head;
+        while(Node_temp-&gt;next != nullptr &amp;&amp; Node_temp-&gt;next-&gt;value != value) {
+            Node_temp = Node_temp-&gt;next;
+        }
+        if(Node_temp-&gt;next != nullptr &amp;&amp; Node_temp-&gt;next-&gt;value == value) {
+            Node_delete = Node_temp-&gt;next;
+            Node_temp-&gt;next = Node_temp-&gt;next-&gt;next;
+        }
+    }
+    if(Node_delete != nullptr) {
+        delete Node_delete;
+        Node_delete = nullptr;
+    }
+}
+</code></pre><hr>
+<h1 id="从尾到头打印链表"><a href="#从尾到头打印链表" class="headerlink" title="从尾到头打印链表"></a>从尾到头打印链表</h1><pre><code>void travel(Node* head) {
+    if(head != nullptr) {
+        if(head-&gt;next != nullptr) {
+            travel(head-&gt;next);
+        }
+        printf(&quot;%d\n&quot;,head-&gt;value);
+    }
+}
+</code></pre><hr>
+<h1 id="在O-1-时间内删除链表节点"><a href="#在O-1-时间内删除链表节点" class="headerlink" title="在O(1)时间内删除链表节点"></a>在O(1)时间内删除链表节点</h1><pre><code>struct Node {
+    int value;
+    Node* next;
+};
+
+void DeleteNode(Node** head, Node* ToBedelete) { //在O(1)时间内删除节点
+    if(!head || !ToBedelete) {
+        return ;
+    }
+    if(ToBedelete-&gt;next != nullptr) { //删除的不是尾节点
+        Node* Node_temp = ToBedelete-&gt;next;
+        ToBedelete-&gt;value = ToBedelete-&gt;next-&gt;value;
+        ToBedelete-&gt;next = Node_temp-&gt;next;
+        delete Node_temp;
+        Node_temp = nullptr;
+    }
+    else if(*head == ToBedelete){ //要删除的是头节点,且只有一个节点
+        delete ToBedelete;
+        ToBedelete = nullptr;
+        *head = nullptr;
+    }
+    else { //删除的是尾节点
+        Node* Node_temp = *head;
+        while(Node_temp-&gt;next-&gt;value != ToBedelete-&gt;value) {
+            Node_temp = Node_temp-&gt;next;
+        }
+        Node_temp-&gt;next = nullptr;
+        delete ToBedelete;
+        ToBedelete = nullptr;
+    }
+}
+</code></pre><hr>
+<h1 id="删除重复的节点"><a href="#删除重复的节点" class="headerlink" title="删除重复的节点"></a>删除重复的节点</h1><pre><code>struct Node {
+    int value;
+    Node* next;
+};
+
+void DeleteNode(Node** head) { //删除重复的节点
+    if(*head == nullptr || head == nullptr) {
+        return ;
+    }
+
+    Node* Node_pre = nullptr;
+    Node* Node_temp = *head;
+    while(Node_temp != nullptr) {
+        bool NeedDelete = false;
+        Node* Node_next =Node_temp-&gt;next;
+        if( Node_temp != nullptr &amp;&amp; Node_temp-&gt;value == Node_next-&gt;value) {
+            NeedDelete = true;
+        }
+        else {
+            Node_pre = Node_temp;
+            Node_temp = Node_next;
+        }
+
+        if(NeedDelete == true) {
+            int value = Node_temp-&gt;value;
+            Node* ToBeDel = Node_temp;
+            while(ToBeDel != nullptr &amp;&amp; ToBeDel-&gt;value == value) {
+                Node_next = ToBeDel-&gt;next;
+                delete ToBeDel;
+                ToBeDel = nullptr;
+                ToBeDel = Node_next;
+            }
+            if(Node_pre == nullptr){
+                *head = ToBeDel;
+            }
+            else {
+                Node_pre-&gt;next = Node_next;
+            }
+            Node_temp = Node_next;
+        }
+    }
+}
+</code></pre><hr>
+<h1 id="链表中倒数第k个节点"><a href="#链表中倒数第k个节点" class="headerlink" title="链表中倒数第k个节点"></a>链表中倒数第k个节点</h1><pre><code>struct Node {
+    int value;
+    Node* next;
+};
+// 注意空指针，k==0时，链表倒数第k个节点，时间复杂度O(n),只循环一次
+Node* FindKthToTail(Node* head, unsigned int k) { 
+    if(head==nullptr || k &lt; 1) {
+        return nullptr;
+    }
+    Node* Node_ahead = head;
+    Node* Node_behind = nullptr;
+    for(unsigned int i = 0; i &lt; k - 1; i++) {
+        if(Node_ahead-&gt;next == nullptr) {
+            return nullptr;
+        }
+        Node_ahead = Node_ahead-&gt;next;
+    }
+    Node_behind = head;
+    while(Node_ahead-&gt;next != nullptr) {
+        Node_ahead = Node_ahead-&gt;next;
+        Node_behind = Node_behind;
+    }
+    return Node_behind;
+}
+</code></pre><hr>
+<p>#用前序和后序构建一颗二叉树#</p>
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+struct BinaryTreeNode {
+    int vaule;
+    BinaryTreeNode* left;
+    BinaryTreeNode* right;
+};
+
+BinaryTreeNode* construct(int* preorder, int* inorder, int length) {
+
+    if(preorder == nullptr || inorder == nullptr || length &lt;= 0) 
+        return nullptr;
+    else 
+        return constructcore(preorder, preorder+length-1, inorder, inorder+length-1);
+}
+
+BinaryTreeNode* constructcore(int pre_start, int pre_end, int in_start, int in_end) {
+
+    BinaryTreeNode* root = new BinaryTreeNode();
+    root-&gt;vaule = pre_start[0];
+    root-&gt;left = root-&gt;right = nullptr;
+
+    if(pre_start == pre_end) {
+        if(in_end == in_start &amp;&amp; *in_start == *pre_end)
+            return root;
+        else 
+            throw exception(&quot;invalid input&quot;);
+    }
+
+    int* in_search_root = in_start;
+    while(in_search_root &lt;= in_end &amp;&amp; root-&gt;vaule != *in_search_root)
+        ++in_search_root;
+    if(in_search_root &gt; in_end) {
+        throw exception(&quot;invalid input&quot;);
+    }
+    int left_length = in_search_root - in_start;
+    if(left_length &gt; 0)
+        root-&gt;left = constructcore(pre_start+1,pre_start+left_length,in_start, in_search_root -1);
+    if(in_end-in_search_root &gt; 0)
+        root-&gt;right = constructcore(pre_start+left_length+1,pre_end,in_search_root+1,in_end);
+    return root;
+
+}
+</code></pre>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://kiudou.github.io">kiudou</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://kiudou.github.io/2018/01/31/list/">https://kiudou.github.io/2018/01/31/list/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/数据结构/">数据结构</a>
+            
+              <a href="/tags/链表/">链表</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/02/06/13/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">django在pycharm中urls.py下的路径报错问题，</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/27/hash_table/">
+        <span class="next-text nav-default">哈希表</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AiVrHngF34KYEejETQ8Ap8MO-gzGzoHsz',
+            appKey: 'x8jnxpbquaxAvzwtdRL4eDwV',
+            visitor: true
+        })
+    </script>
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:qidong120@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/kiudou" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">kiudou</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.1"></script>
+
+  </body>
+</html>
